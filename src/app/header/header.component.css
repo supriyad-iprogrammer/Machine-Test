@@ -28,11 +28,11 @@ color: #FFFFFF;
 
 }
 a:hover, a:active{
-  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
   background: #FFFFFF;
 }
 .nav-link:active {
-  -webkit-transform: scale(1.1);
+transform: scale(1.1);
   background: #FFFFFF;
 }
 li{
