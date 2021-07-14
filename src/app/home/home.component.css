@@ -21,8 +21,8 @@ ul.breadcrumb li a:hover {
   text-decoration: underline;
 }
 p{
-  /* position: absolute;
-width: 148px;
+  /* position: absolute; */
+/* width: 148px;
 height: 72px;
 left: 176px;
 top: 193px; */
@@ -36,4 +36,16 @@ line-height: 18px;
 
 
 
+}
+.card{
+  /* position: absolute;
+width: 570px;
+height: 144px;
+left: 98px;
+top: 173px; */
+
+background: #FFFFFF;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+margin-top: 15px !important;
 }
