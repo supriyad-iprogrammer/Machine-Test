@@ -1,1 +1,81 @@
-<p>vastu-score-check works!</p>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li><a [routerLink]="'/home'">Home</a></li>
+    <li><a [routerLink]="'/vastuScore'">Vaastu Check</a></li>
+  </ul>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-12 col-lg-4 col-12  backgroundColor">
+      <div class="roomsWrap pb-4">
+        <div class="ui_bathroom-about position-relative">
+          <p class="d-md-block d-none d-lg-block mb-4">
+            By clicking on the boxes below, you can choose the rooms that are
+            present in each direction of your home
+          </p>
+          <div class="roomsCheckListBox" *ngIf="isboxClicked">
+            <h2>{{ ListDataName }}</h2>
+            <div style="display: flex">
+              <p class="mb-0 paragraph">Want to know more about North-West?</p>
+              <a
+                (click)="getDirectionDetails($event, ListDataName)"
+                class="ancherTag"
+                title="READ NOW"
+                >READ NOW</a
+              >
+            </div>
+            <hr class="" />
+
+            <div class="listRoomWrap position-relative">
+              <div class="row no-gutters">
+                <div
+                  class="col-md-6 col-12 border-bottom"
+                  *ngFor="
+                    let item of roomListData.payload.data.roomList;
+                    let i = index
+                  "
+                >
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      (click)="addCheckboxValue(i)"
+                      class="custom-control-input"
+                    /><label class="custom-control-label">{{ item }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-12 col-lg-8 col-12 ">
+      <div class="roomSelectorBoxes text-center py-4">
+        <div class="row">
+          <div class="col-4" *ngFor="let item of boxData; let i = index">
+            <div class="box "  #box (click)="onBoxClick($event, item, i,box)">
+              <h3>{{ item }}</h3>
+              <ul class="list-unstyled mb-0"></ul>
+              <p>
+                No rooms <br />
+                selected
+              </p>
+              <p *ngFor="let i of afterCheckedValue">
+                {{ i }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="calculateBtnWrap">
+        <button type="button" [class.color]="isClickedCheckBox==true" class="vaastu-btn btn orgBtn rounded">
+          CHECK</button
+        ><button
+          type="button" *ngIf="isClickedCheckBox && isboxClicked" [class.color]="isClickedCheckBox==true" (click)="reset()"
+          class="mobRoomsWrap vaastu-btn btn orgBtn rounded ml-2"
+        >
+          Reset All
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

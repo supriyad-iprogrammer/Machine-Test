@@ -1,11 +1,9 @@
-<app-header></app-header>
-
 <div class="container">
   <ul class="breadcrumb">
-    <li><a [routerLink]="'home'">Home</a></li>
-    <li><a [routerLink]="'home'">Solutions</a></li>
-    <li><a [routerLink]="'vastuScore'">Vaastu Check</a></li>
-    <li>Vaastu Score Check</li>
+    <li><a [routerLink]="'/home'">Home</a></li>
+    <!-- <li><a [routerLink]="'/home'">Solutions</a></li>
+    <li><a [routerLink]="'/vastuScore'">Vaastu Check</a></li> -->
+
   </ul>
 
   <div class="row">
@@ -20,10 +18,12 @@
             </div>
             <div class="col-sm-8">
               <h5 class="vaastu-title text-body mb-0">Compass Tool</h5>
-              <small class="mb-2" style="color: #999999;">Output Time :1 min</small>
+              <small class="mb-2" style="color: #999999"
+                >Output Time :1 min</small
+              >
               <p class="card-text">
-                Point in the direction of specific rooms to know their suitability
-                according to Vaastu guidelines.
+                Point in the direction of specific rooms to know their
+                suitability according to Vaastu guidelines.
               </p>
             </div>
           </div>
@@ -41,8 +41,9 @@
             </div>
             <div class="col-sm-8">
               <h5 class="vaastu-title text-body mb-0">Vaastu Score Check</h5>
-              <small class="mb-2" style="color: #999999;
-              ">Ideal for planning stage</small>
+              <small class="mb-2" style="color: #999999"
+                >Ideal for planning stage</small
+              >
               <p class="mb-0">
                 Get an instant Vaastu score by entering the locations of all the
                 rooms in your house.
@@ -53,7 +54,4 @@
       </div>
     </div>
   </div>
-
-
 </div>
-
