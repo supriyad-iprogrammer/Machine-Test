@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 import { ServerUrl } from '../core/constant/serverurl.constant';
 
 @Injectable()
-export class DataserviceService {
+export class Dataservice {
   roomData: any;
 
   header: HttpHeaders = new HttpHeaders();

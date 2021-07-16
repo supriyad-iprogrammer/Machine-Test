@@ -1,8 +1,5 @@
 <div class="container-fluid">
-  <ul class="breadcrumb">
-    <li><a [routerLink]="'/home'">Home</a></li>
-    <li><a [routerLink]="'/vastuScore'">Vaastu Check</a></li>
-  </ul>
+  <app-breadcrumb></app-breadcrumb>
 
   <div class="row">
     <div class="col-md-4 col-sm-12 col-lg-4 col-12  backgroundColor">
@@ -30,16 +27,22 @@
                 <div
                   class="col-md-6 col-12 border-bottom"
                   *ngFor="
-                    let item of roomListData.payload.data.roomList;
+                    let item of roomListData;
                     let i = index
                   "
                 >
                   <div class="custom-control custom-checkbox">
+
                     <input
                       type="checkbox"
-                      (click)="addCheckboxValue(i)"
+                      [id]="item+i"
+                      [name]="item.order"
+                      [ngModel]="item.Checked"
+                      (ngModelChange)="addCheckboxValue($event,item)"
+
+
                       class="custom-control-input"
-                    /><label class="custom-control-label">{{ item }}</label>
+                    /><label class="custom-control-label" [for]="item+i">{{ item }}</label>
                   </div>
                 </div>
               </div>
@@ -52,16 +55,27 @@
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
           <div class="col-4" *ngFor="let item of boxData; let i = index">
+
             <div class="box "  #box (click)="onBoxClick($event, item, i,box)">
               <h3>{{ item }}</h3>
               <ul class="list-unstyled mb-0"></ul>
-              <p>
-                No rooms <br />
-                selected
-              </p>
-              <p *ngFor="let i of afterCheckedValue">
-                {{ i }}
-              </p>
+              <div *ngIf="isClickedCheckBox==true;else other_content">
+                <p *ngFor="let i of newArray">
+                  {{ i.order }}
+                </p>
+            </div>
+
+            <ng-template #other_content><p >
+              No rooms <br />
+              selected
+            </p></ng-template>
+              <!-- <div *ngIf="isClickedCheckBox==false">
+
+              </div>
+              <div *ngIf="isClickedCheckBox==true">
+
+              </div> -->
+
             </div>
           </div>
         </div>
