@@ -139,3 +139,28 @@ input[type=checkbox]:after {
  .colorBox{
 background: #FDEEE6;
  }
+.modal.show{
+  display: block;
+}
+
+h6{
+color:
+rgba(80, 55, 150, 1);
+
+}
+.modal-content {
+  border-radius: 10px;
+}
+.row {
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.roomTypeList li {
+  color: #ff0000;
+}
+.roomTypeList li span {
+  color: #666666;
+}

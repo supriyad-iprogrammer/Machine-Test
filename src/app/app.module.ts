@@ -18,7 +18,8 @@ import { FooterComponent } from './common_layout/footer/footer.component';
     HomeComponent,
     VastuScoreCheckComponent,
     BreadcrumbComponent,
-    FooterComponent
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,

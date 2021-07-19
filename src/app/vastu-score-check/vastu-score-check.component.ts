@@ -2,7 +2,7 @@ import { map } from 'rxjs/operators';
 import { Dataservice } from './../service/data.service';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ServerUrl } from '../core/constant/serverurl.constant';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vastu-score-check',
@@ -10,46 +10,58 @@ import { ServerUrl } from '../core/constant/serverurl.constant';
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
+  display = 'none';
   isCheckBoxClicked: boolean = false;
   isboxClicked: boolean = false;
   newArray: any = [];
+
   boxData: any[] = [
-    {id:1, value:'North West',services: []},
-    {id:2, value:'North',services: []},
-    {id:3, value:'North East',services: []},
-    {id:4, value:'West', services: []},
-    {id:5, value:'Center',services: []},
-    {id:6, value:'East',services: []},
-    {id:7, value:'South West',services: []},
-    {id:8, value:'South',services: []},
-    {id:9, value:'South East',services: []}
+    { id: 1, value: 'North West', DirectionNameList: [] },
+    { id: 2, value: 'North', DirectionNameList: [] },
+    { id: 3, value: 'North East', DirectionNameList: [] },
+    { id: 4, value: 'West', DirectionNameList: [] },
+    { id: 5, value: 'Center', DirectionNameList: [] },
+    { id: 6, value: 'East', DirectionNameList: [] },
+    { id: 7, value: 'South West', DirectionNameList: [] },
+    { id: 8, value: 'South', DirectionNameList: [] },
+    { id: 9, value: 'South East', DirectionNameList: [] },
   ];
   ListDataName: any;
   roomListData: any;
-
+  favourableDirectionsList: any;
   color = ['#FDEEE6', '#FFFFFF'];
 
-  constructor(private dataService: Dataservice, private renderer: Renderer2) {}
+  constructor(
+    private dataService: Dataservice,
+    private renderer: Renderer2,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
+  openModal() {
+    this.display = 'block';
+  }
+  onCloseHandled() {
+    this.display = 'none';
+  }
   onBoxClick(item: any, i: number, box: any) {
     console.log(item);
     this.isboxClicked = true;
 
     this.ListDataName = item.value;
+    if (this.isboxClicked == true) {
+      this.dataService
+        .get(ServerUrl.API_GET_ROOMLIST)
+        .subscribe((response: any) => {
+          this.roomListData = response.payload.data['roomList'];
+          console.log(this.roomListData);
+        });
+    }
 
-    this.dataService
-      .get(ServerUrl.API_GET_ROOMLIST).subscribe((response: any) => {
-        this.roomListData = response.payload.data['roomList'];
-        console.log(this.roomListData)
-
-      });
     if (this.isCheckBoxClicked == true && this.isboxClicked == true) {
       console.log(box);
       this.renderer.setStyle(box, 'background', this.color[i]);
     }
-
-
   }
   addCheckBoxValue($event: any, data: any) {
     // debugger
@@ -59,84 +71,99 @@ export class VastuScoreCheckComponent implements OnInit {
     // debugger
     this.isCheckBoxClicked = true;
 
-
-  console.log($event.target.value)
-  var index = this.newArray.findIndex((x: { roomListData: any }) => {
-      x.roomListData == data;
-    });
+    console.log($event.target.value);
 
     // If checked then push
     if ($event.target.checked) {
-      let obj = {
-        item: data,
-      };
-      // Pushing the object into array
-      console.log(obj)
+      this.boxData.filter((item: any) => {
+        // debugger
+        if (item.value == this.ListDataName) {
+          item.DirectionNameList.push(data);
 
-
-      this.newArray.push(obj);
-console.log(this.newArray)
-
-
+          console.log(this.boxData);
+        }
+      });
     } else {
-      //remove element after we uncheck
-      this.newArray.splice(index, 1);
+      this.boxData.filter((item: any) => {
+        if (item.value == this.ListDataName) {
+          item.DirectionNameList.splice(
+            item.DirectionNameList.indexOf(data),
+            1
+          );
+
+          console.log(this.boxData);
+        }
+      });
     }
 
-    // console.log(this.newArray.length);
-    // if (this.newArray.length > 3) {
-    //   // debugger;
-    //   for (let i = 0; i >= this.newArray.length; i++) {
-    //     let name = +this.newArray.length + 'more';
-    //     console.log(name);
-    //     this.ListDataName = data;
-    //     console.log(this.ListDataName);
-    //   }
-    //   console.log('array length is more than 3');
-    // }
-
-//       if ($event.target.checked) {
-//         debugger
-//       console.log($event.target.value)
-//       this.roomListData.filter((item: any) => {
-//       if(item == this.ListDataName) {
-//       item.services.push($event.target.value)
-// console.log(item.services)
-//       }
-//       })
-//       console.log(this.roomListData)
-
-
-//       }
-//       else {
-
-//       this.roomListData.filter((item: any) => {
-//       if(item.value == this.ListDataName) {
-//       item.services.splice(item.services.indexOf($event.target.value), 1)
-//       console.log(item.services)
-
-//     }
-//       })
-//       }
-
-      // console.log(this.directionsMap);
-
 
   }
+
+  // for get direction details from posth method
   getDirectionDetails(event: any, item: any) {
+    this.display = 'block';
+    // debugger
+
     console.log(event.target.value);
     console.log(item);
-    let direction={
-      "direction":item
-  }
+    let direction = {
+      direction: item,
+    };
     this.dataService
       .post(ServerUrl.API_GET_ROOMDETAILS_DIRECTION, direction)
-      .subscribe((res) => {
+      .subscribe((res: any) => {
         console.log(res);
+        this.favourableDirectionsList =
+          res.payload.data['favourableDirections'];
+        console.log(this.favourableDirectionsList);
       });
   }
+  //reset all list
   reset() {
     this.newArray = [];
     this.roomListData = [];
+  }
+  //for get vastu score with post method call
+  getVastuScore() {
+    console.log('hiiiiiiiiii');
+
+    let obj = {
+      selectedRoomsAndDirection: {
+        'North West': [],
+        North: ['Balcony'],
+        'North East': [
+          'Dining Room',
+          'Drawing Room',
+          'Dressing Room',
+          'Garage',
+          'Guest Bedroom',
+          'Kitchen',
+          'Living Room',
+        ],
+        West: ['Open Space'],
+        Centre: ['Pooja Room'],
+        East: ['Bathroom', 'Children Bedroom'],
+        'South West': [],
+        South: [
+          'Main Entrance of home',
+          'Underground Tank',
+          'Open Space',
+          'Porch',
+          'Staircase',
+          'Store Room',
+          'Toilet',
+          'Utility Room',
+          'Parking',
+          'Verandah',
+        ],
+        'South East': [],
+      },
+    };
+
+    this.dataService
+      .post(ServerUrl.API_GET_VASTUSCORE,obj)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

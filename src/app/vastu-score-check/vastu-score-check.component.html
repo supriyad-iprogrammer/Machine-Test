@@ -13,31 +13,75 @@
             <h2>{{ ListDataName }}</h2>
             <div style="display: flex">
               <p class="mb-0 paragraph">Want to know more about North-West?</p>
-              <a
-                (click)="getDirectionDetails($event, ListDataName)"
-                class="ancherTag"
-                title="READ NOW"
-                >READ NOW</a
-              >
+              <a (click)="getDirectionDetails($event, ListDataName)" class="ancherTag" title="READ NOW">READ NOW</a>
+              <div class="modal fade legendModal show" id="legend" tabindex="-1" [ngStyle]="{'display':display}"
+                aria-labelledby="" aria-hidden="true"
+                style="display: block; justify-content: center; position: fixed; text-align: left;">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content" style="height: 100%;">
+                    <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
+                      <h4 class="modal-title" id="">South West </h4><button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close"><span aria-hidden="true" (click)="onCloseHandled()">×</span></button>
+                    </div>
+                    <div class="modal-body" style="height: 100%;">
+                      <h6>ABOUT</h6>
+                      <p class="pdl-5">
+                      <div>
+                        <p>Overhead water tanks should be placed in this direction.</p>
+                        <p>It is recommended to store annual stock of granary in the southwest corner.</p>
+                        <p>Bedrooms must be avoided in this direction.</p>
+                        <p>Kitchens must not be designed in this direction.</p>
+                        <p>Puja rooms must also be avoided in this direction.</p>
+                      </div>
+
+                      <h6>FAVOURABLE ROOMS</h6>
+                      <ul class="row roomTypeList" *ngFor="let i of favourableDirectionsList">
+
+                        <li class="col-12 col-md-6 col-lg-6"><span> {{i}}</span></li>
+
+                      </ul>
+                      <h6>NEUTRAL ROOMS</h6>
+                      <ul class="row roomTypeList">
+                        <li class="col-12 col-md-6 col-lg-6"><span> Children Bedroom</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Dining Room</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Parking</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Porch</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Verandah</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Living Room</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Drawing Room</span></li>
+                      </ul>
+                      <h6>AVOIDABLE ROOMS</h6>
+                      <ul class="row roomTypeList">
+                        <li class="col-12 col-md-6 col-lg-6"><span> Balcony</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Washroom + Toilet</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Guest Bedroom</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Kitchen</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Underground Tank</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Pooja Room</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Utility Room</span></li>
+                        <li class="col-12 col-md-6 col-lg-6"><span> Open Space</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
             </div>
+
+
             <hr class="" />
 
             <div class="listRoomWrap position-relative">
               <div class="row no-gutters">
-                <div
-                  class="col-md-6 col-12 border-bottom"
-                  *ngFor="let item of roomListData; let i = index"
-                >
+                <div class="col-md-6 col-12 border-bottom" *ngFor="let item of roomListData; let i = index">
                   <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      [value]="i"
-                      [checked]="item.value"
-                      (change)="addCheckBoxValue($event, item)"
-                      class="custom-control-input"
-                    /><label class="custom-control-label" >{{
+                    <input type="checkbox" [value]="i" [checked]="item.value" (change)="addCheckBoxValue($event, item)"
+                      class="custom-control-input" /><label class="custom-control-label">{{
                       item
-                    }}</label>
+                      }}</label>
                   </div>
                 </div>
               </div>
@@ -51,44 +95,30 @@
         <div class="row">
           <div class="col-4" *ngFor="let item of boxData; let i = index">
             <div class="box" #box (click)="onBoxClick( item, i, box)">
-     <h3>{{ item.value }}</h3>
+              <h3>{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
-              <div *ngIf="isCheckBoxClicked == true ; else other_content">
-                <p *ngFor="let i of newArray">
-                  {{ i.item }}
+              <div *ngIf="isCheckBoxClicked == true && isboxClicked==true;" >
+                <p *ngFor="let i of boxData">
+                  {{ i }}
                 </p>
               </div>
 
-              <ng-template #other_content
-                ><p>
+              <div *ngIf="isCheckBoxClicked == false ">
+                <p>
                   No rooms <br />
                   selected
-                </p></ng-template
-              >
-              <!-- <div *ngIf="isClickedCheckBox==false">
-
+                </p>
               </div>
-              <div *ngIf="isClickedCheckBox==true">
 
-              </div> -->
             </div>
           </div>
         </div>
       </div>
       <div class="calculateBtnWrap">
-        <button
-          type="button"
-          [class.color]="isCheckBoxClicked == true"
-          class="vaastu-btn btn orgBtn rounded"
-        >
-          CHECK</button
-        ><button
-          type="button"
-          *ngIf="isCheckBoxClicked && isboxClicked"
-          [class.color]="isCheckBoxClicked == true"
-          (click)="reset()"
-          class="mobRoomsWrap vaastu-btn btn orgBtn rounded ml-2"
-        >
+        <button type="button" [class.color]="isCheckBoxClicked == true" class="vaastu-btn btn orgBtn rounded" (click)="getVastuScore()">
+          CHECK</button><button type="button" *ngIf="isCheckBoxClicked && isboxClicked"
+          [class.color]="isCheckBoxClicked == true" (click)="reset()"
+          class="mobRoomsWrap vaastu-btn btn orgBtn rounded ml-2">
           Reset All
         </button>
       </div>
