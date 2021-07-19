@@ -2,7 +2,7 @@
   <app-breadcrumb></app-breadcrumb>
 
   <div class="row">
-    <div class="col-md-4 col-sm-12 col-lg-4 col-12  backgroundColor">
+    <div class="col-md-4 col-sm-12 col-lg-4 col-12 backgroundColor">
       <div class="roomsWrap pb-4">
         <div class="ui_bathroom-about position-relative">
           <p class="d-md-block d-none d-lg-block mb-4">
@@ -26,23 +26,18 @@
               <div class="row no-gutters">
                 <div
                   class="col-md-6 col-12 border-bottom"
-                  *ngFor="
-                    let item of roomListData;
-                    let i = index
-                  "
+                  *ngFor="let item of roomListData; let i = index"
                 >
                   <div class="custom-control custom-checkbox">
-
                     <input
                       type="checkbox"
-                      [id]="item+i"
-                      [name]="item.order"
-                      [ngModel]="item.Checked"
-                      (ngModelChange)="addCheckboxValue($event,item)"
-
-
+                      [value]="i"
+                      [checked]="item.value"
+                      (change)="addCheckBoxValue($event, item)"
                       class="custom-control-input"
-                    /><label class="custom-control-label" [for]="item+i">{{ item }}</label>
+                    /><label class="custom-control-label" >{{
+                      item
+                    }}</label>
                   </div>
                 </div>
               </div>
@@ -51,40 +46,47 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8 col-sm-12 col-lg-8 col-12 ">
+    <div class="col-md-8 col-sm-12 col-lg-8 col-12">
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
           <div class="col-4" *ngFor="let item of boxData; let i = index">
-
-            <div class="box "  #box (click)="onBoxClick($event, item, i,box)">
-              <h3>{{ item }}</h3>
+            <div class="box" #box (click)="onBoxClick( item, i, box)">
+     <h3>{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
-              <div *ngIf="isClickedCheckBox==true;else other_content">
+              <div *ngIf="isCheckBoxClicked == true ; else other_content">
                 <p *ngFor="let i of newArray">
-                  {{ i.order }}
+                  {{ i.item }}
                 </p>
-            </div>
+              </div>
 
-            <ng-template #other_content><p >
-              No rooms <br />
-              selected
-            </p></ng-template>
+              <ng-template #other_content
+                ><p>
+                  No rooms <br />
+                  selected
+                </p></ng-template
+              >
               <!-- <div *ngIf="isClickedCheckBox==false">
 
               </div>
               <div *ngIf="isClickedCheckBox==true">
 
               </div> -->
-
             </div>
           </div>
         </div>
       </div>
       <div class="calculateBtnWrap">
-        <button type="button" [class.color]="isClickedCheckBox==true" class="vaastu-btn btn orgBtn rounded">
+        <button
+          type="button"
+          [class.color]="isCheckBoxClicked == true"
+          class="vaastu-btn btn orgBtn rounded"
+        >
           CHECK</button
         ><button
-          type="button" *ngIf="isClickedCheckBox && isboxClicked" [class.color]="isClickedCheckBox==true" (click)="reset()"
+          type="button"
+          *ngIf="isCheckBoxClicked && isboxClicked"
+          [class.color]="isCheckBoxClicked == true"
+          (click)="reset()"
           class="mobRoomsWrap vaastu-btn btn orgBtn rounded ml-2"
         >
           Reset All

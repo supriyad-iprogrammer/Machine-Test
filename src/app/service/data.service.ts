@@ -5,20 +5,19 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
 import { ServerUrl } from '../core/constant/serverurl.constant';
 
 @Injectable()
 export class Dataservice {
-  roomData: any;
+
 
   header: HttpHeaders = new HttpHeaders();
   constructor(private http: HttpClient) {
-    this.header.set('Content-Type', 'application/octet-stream');
+    this.header.set('Content-Type', 'application/json');
   }
-
+// get request code
   get(
     url: string,
     isLoader?: boolean,
@@ -32,11 +31,11 @@ export class Dataservice {
       catchError(this.errorHandler)
     );
   }
-
+// Error Handle  code
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error.message || 'server error.');
   }
-
+// post request code
   post(
     url: string,
     data: any,

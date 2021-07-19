@@ -1,105 +1,136 @@
+import { map } from 'rxjs/operators';
 import { Dataservice } from './../service/data.service';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ServerUrl } from '../core/constant/serverurl.constant';
 
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  FormArray,
-} from '@angular/forms';
+
 @Component({
   selector: 'app-vastu-score-check',
   templateUrl: './vastu-score-check.component.html',
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
-  isClickedCheckBox: boolean = false;
+  isCheckBoxClicked: boolean = false;
   isboxClicked: boolean = false;
   newArray: any = [];
-  boxData: string[] = [
-    'NORTH WEST',
-    'NORTH',
-    'NORTH EAST',
-    'WEST',
-    'CENTER',
-    'EAST',
-    'SOUTH WEST',
-    'SOUTH',
-    'SOUTH EAST',
+  boxData: any[] = [
+    {id:1, value:'North West',services: []},
+    {id:2, value:'North',services: []},
+    {id:3, value:'North East',services: []},
+    {id:4, value:'West', services: []},
+    {id:5, value:'Center',services: []},
+    {id:6, value:'East',services: []},
+    {id:7, value:'South West',services: []},
+    {id:8, value:'South',services: []},
+    {id:9, value:'South East',services: []}
   ];
-  ListDataName: any[] = [];
+  ListDataName: any;
   roomListData: any;
 
   color = ['#FDEEE6', '#FFFFFF'];
-  form: FormGroup;
-  constructor(
-    private dataService: Dataservice,
-    private renderer: Renderer2,
-    private formBuilder: FormBuilder
-  ) {
-    this.form = this.formBuilder.group({
-      website: this.formBuilder.array([], [Validators.required]),
-    });
-  }
+
+  constructor(private dataService: Dataservice, private renderer: Renderer2) {}
 
   ngOnInit(): void {}
-  onBoxClick(event: any, item: any, i: number, box: any) {
-    // debugger
+  onBoxClick(item: any, i: number, box: any) {
+    console.log(item);
     this.isboxClicked = true;
 
-    console.log(i);
+    this.ListDataName = item.value;
 
-    this.ListDataName = item;
-    this.renderer.setStyle(box, 'background-color', this.color[i]);
     this.dataService
-      .get(ServerUrl.API_ENDPOINT_GET_ROOMLIST)
-      .subscribe((response: any) => {
-        this.roomListData = response;
+      .get(ServerUrl.API_GET_ROOMLIST).subscribe((response: any) => {
         this.roomListData = response.payload.data['roomList'];
-        console.log(this.roomListData);
+        console.log(this.roomListData)
+
       });
+    if (this.isCheckBoxClicked == true && this.isboxClicked == true) {
+      console.log(box);
+      this.renderer.setStyle(box, 'background', this.color[i]);
+    }
+
+
   }
-  addCheckboxValue(event: any, data: any) {
-    console.log(data);
+  addCheckBoxValue($event: any, data: any) {
     // debugger
-    this.isClickedCheckBox = true;
-    var index = this.newArray.findIndex((x: { roomListData: any }) => {
+    console.log(data);
+    console.log($event.target.value);
+
+    // debugger
+    this.isCheckBoxClicked = true;
+
+
+  console.log($event.target.value)
+  var index = this.newArray.findIndex((x: { roomListData: any }) => {
       x.roomListData == data;
     });
+
     // If checked then push
-    if (event) {
+    if ($event.target.checked) {
       let obj = {
-        order: data,
+        item: data,
       };
       // Pushing the object into array
+      console.log(obj)
+
+
       this.newArray.push(obj);
+console.log(this.newArray)
+
+
     } else {
       //remove element after we uncheck
       this.newArray.splice(index, 1);
     }
 
-    //Duplicates the obj if we uncheck it
-    //How to remove the value from array if we uncheck it
-    console.log(this.newArray);
+    // console.log(this.newArray.length);
+    // if (this.newArray.length > 3) {
+    //   // debugger;
+    //   for (let i = 0; i >= this.newArray.length; i++) {
+    //     let name = +this.newArray.length + 'more';
+    //     console.log(name);
+    //     this.ListDataName = data;
+    //     console.log(this.ListDataName);
+    //   }
+    //   console.log('array length is more than 3');
+    // }
 
-    console.log(this.newArray.length);
-    if (this.newArray.length > 3) {
-      // debugger;
-      for (let i = 0; i >= this.newArray.length; i++) {
-        let name = +this.newArray.length + 'more';
-        console.log(name);
-        this.ListDataName = data;
-        console.log(this.ListDataName);
+//       if ($event.target.checked) {
+//         debugger
+//       console.log($event.target.value)
+//       this.roomListData.filter((item: any) => {
+//       if(item == this.ListDataName) {
+//       item.services.push($event.target.value)
+// console.log(item.services)
+//       }
+//       })
+//       console.log(this.roomListData)
 
-      }
-      console.log('array length is more than 3');
-    }
+
+//       }
+//       else {
+
+//       this.roomListData.filter((item: any) => {
+//       if(item.value == this.ListDataName) {
+//       item.services.splice(item.services.indexOf($event.target.value), 1)
+//       console.log(item.services)
+
+//     }
+//       })
+//       }
+
+      // console.log(this.directionsMap);
+
+
   }
   getDirectionDetails(event: any, item: any) {
+    console.log(event.target.value);
+    console.log(item);
+    let direction={
+      "direction":item
+  }
     this.dataService
-      .post(ServerUrl.API_GET_ROOMDETAILS_DIRECTION, item)
+      .post(ServerUrl.API_GET_ROOMDETAILS_DIRECTION, direction)
       .subscribe((res) => {
         console.log(res);
       });
@@ -108,5 +139,4 @@ export class VastuScoreCheckComponent implements OnInit {
     this.newArray = [];
     this.roomListData = [];
   }
-
 }

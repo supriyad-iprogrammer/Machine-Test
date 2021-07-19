@@ -25,7 +25,7 @@ import { FooterComponent } from './common_layout/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
 
   ],
