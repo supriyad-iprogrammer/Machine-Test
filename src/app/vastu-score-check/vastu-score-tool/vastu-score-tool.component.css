@@ -1,0 +1,139 @@
+.vaastu_score {
+  margin: 0px auto;
+  padding: 20px;
+  display: block;
+}
+.knowMore{
+    font-weight: 700;
+    color: #FF7021;
+}
+.knowMoreImg{
+  height: 17.47px;
+left: 88.85%;
+right: 10.81%;
+}
+.backIcon{
+  margin: 15px 15px 0 0;
+  font-weight: 700;
+  color: #ff7021;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.hd-overall-vaastu-score {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #666666;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.improvment-req-number {
+  margin: 0px 0px 30px 0px;
+  padding: 18px 0px 21px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #e2e2e2;
+  position: relative;
+}
+.improvment-req-number .number {
+  margin: 0px;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  color: #d11e4c;
+}
+.improvment-req-number .tx-improvement-required {
+  margin: 0px 0 5px 0;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #503796;
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+.room-wise-breakup-score {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+}
+.room-wise-breakup-score p {
+  margin: 0px;
+  padding: 14px 0 0px 0;
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  color: #666666;
+}
+.selectedRoomBox .border-bottom {
+  cursor: pointer;
+}
+.left {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+  color: #666666;
+}
+.inner-left {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 15px;
+}
+.btn-fav {
+  margin: 0px;
+  padding: 0px 24px;
+  font-weight: 400;
+  font-size: 11px;
+  color: #15b525;
+  text-decoration: none;
+  background: #f1fbf2;
+  height: 22px;
+  line-height: 21px;
+  display: block;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+.btn-reset-vaastu-score {
+  margin: 20px auto;
+  padding: 0px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  background: #ff7021;
+  min-width: 250px;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 0px;
+  letter-spacing: -0.15px;
+}
+.vaastu-compliant-plans-wrap {
+  margin: 0px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  color: #67677d;
+  border-radius: 10px;
+  background: url(../../../assets/vastu_bot_banner_bg.png) no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  height: 134px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.029693);
+}

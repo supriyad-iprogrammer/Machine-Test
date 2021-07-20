@@ -5,16 +5,18 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { ServerUrl } from '../core/constant/serverurl.constant';
 
 @Injectable()
 export class Dataservice {
 
-
+  private responseData =new Subject<any>();
+  responseData$=this.responseData.asObservable();
   header: HttpHeaders = new HttpHeaders();
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+) {
     this.header.set('Content-Type', 'application/json');
   }
 // get request code
@@ -50,5 +52,8 @@ export class Dataservice {
           return res;
         })
       );
+  }
+  sendData(data:any[]){
+this.responseData.next(data)
   }
 }

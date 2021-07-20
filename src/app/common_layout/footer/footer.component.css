@@ -1,0 +1,81 @@
+footer .footer-component.container {
+  display: block;
+}
+.excludeMobileFooter .footer-component {
+  display: block;
+}
+.excludeMobileFooter .footer-component {
+  display: block;
+}
+.footer-component {
+  padding: 40px 15px;
+  background: #F3F2F8;
+
+}
+
+* {
+  font-family: "Noto Sans" !important;
+}
+.footer-component a {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  font-size: 11px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #333;
+  display: block;
+  padding-bottom: 10px;
+}
+.footer-grid {
+  border-left: solid 1px #e2e2e2;
+  padding-left: 30px;
+}
+.footer-grid {
+  border-left: solid 1px #e2e2e2;
+  padding-left: 30px;
+}
+a{
+  text-decoration: none;
+}
+.footer-grid {
+  padding-left: 15px;
+}
+.footer-component a, .footer-headings {
+  font-size: 9px;
+}
+.footer-headings {
+  font-size: 11px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  color: #999;
+  padding-bottom: 10px;
+}
+
+
+.social-links img {
+  padding-right: 15px;
+}
+
+button, img {
+  outline: 0;
+  border: 0;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  max-width: 100%;
+}
+p.footer-headings.text-uppercase.mb-0.customer-care-text {
+  margin-top: 11px;
+  padding-bottom: 8px;
+}

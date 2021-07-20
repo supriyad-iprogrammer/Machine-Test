@@ -1,1 +1,144 @@
-<p>vastu-score-tool works!</p>
+<app-breadcrumb style="justify-content: flex-start;
+"></app-breadcrumb>
+<div class="d-flex " style="justify-content: flex-end;
+margin-right: 80px;">
+
+  <a href="#" class="knowMore text-uppercase "
+    ><img class="knowMoreImg"
+    src="../../../assets/images/know-more-icon.png"
+      alt="Know_more"
+    />
+    Know More </a
+  >
+</div>
+
+<div class="container">
+
+  <div class="vaastu_score col-12 col-md-10 mx-auto">
+
+    <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
+
+      <a
+        href="#"
+        class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block"
+        ><img
+          src="../../../assets/images/Path.png"
+          alt="back_icon"
+        />
+        <span  class="d-inline-block ml-2">GO BACK</span></a
+      >
+      <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE</h3>
+      <div class="improvment-req-number">
+        <div class="number">8.7 / 10</div>
+        <div class="tx-improvement-required">Excellent</div>
+      </div>
+      <div class="room-wise-breakup-score">
+        <h3 class="hd-overall-vaastu-score">ROOM-WISE BREAKUP OF SCORE</h3>
+        <p>Tap on the room to know details of the Vaastu compliance score</p>
+      </div>
+      <div class="selectedRoomBox position-relative">
+        <div class="row no-gutters">
+          <div class="col-md-6 col-12 border-bottom">
+            <div class="d-flex justify-content-between py-3">
+              <div class="left">
+                Washroom + Toilet
+                <div class="inner-left">(West)</div>
+              </div>
+              <div class="right mr-lg-3 mr-md-3 mr-0">
+                <button class="btn-fav btn">Favorable</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12 border-bottom">
+            <div class="d-flex justify-content-between py-3">
+              <div class="left ml-lg-3 ml-md-3 ml-0">
+                Dining Room
+                <div class="inner-left">(West)</div>
+              </div>
+              <div class="right">
+                <button class="btn-fav btn">Favorable</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-6 col-12 border-bottom">
+            <div class="d-flex justify-content-between py-3">
+              <div class="left">
+                Kitchen
+                <div class="inner-left">(West)</div>
+              </div>
+              <div class="right mr-lg-3 mr-md-3 mr-0">
+                <button class="btn-fav btn">Favorable</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-reset-vaastu-score">Check score for second plan</button>
+    <div class="vaastu-compliant-plans-wrap">
+      <div class="cnt">
+        <h2>Ready-made Vaastu plans</h2>
+        <p>
+          We have over 400 ready-made Vaastu-compliant floorplans. Take a look
+          at our plans gallery right now.
+        </p>
+      </div>
+      <div class="img">
+        <img src="../../../assets/images/map.svg" />
+      </div>
+    </div>
+  </div>
+  <div class="custom-modal-section undefined">
+    <div
+      class="modal fade legendModal"
+      id="legend"
+      tabindex="-1"
+      aria-labelledby=""
+      aria-hidden="true"
+      style="
+        display: none;
+        justify-content: center;
+        position: fixed;
+        text-align: left;
+      "
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="height: 100%">
+          <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
+            <h4 class="modal-title" id="">Legend</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 100%">
+            <p class="mb-5">
+              This will be two lines of info on what this legend conveys. This
+              will be two lines of info on what this legend conveys.
+            </p>
+            <a href="#" class="btn-fav mb-3">FAVOURABLE</a>
+            <p class="mb-3">
+              This will be two lines of info on what are favourable directions.
+            </p>
+            <a href="#" class="btn-fav yellow mb-3">NEUTRAL</a>
+            <p class="mb-3">
+              This will be two lines of info on what are neutral directions.
+            </p>
+            <a href="#" class="btn-fav marun mb-3">AVOIDABLE</a>
+            <p>
+              This will be two lines of info on what are unfavourable
+              directions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

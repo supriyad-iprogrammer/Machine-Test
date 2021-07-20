@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
 
-  <div class="row">
+  <div class="row" >
     <div class="col-md-4 col-sm-12 col-lg-4 col-12 backgroundColor">
       <div class="roomsWrap pb-4">
         <div class="ui_bathroom-about position-relative">
@@ -65,15 +65,8 @@
                   </div>
                 </div>
               </div>
-
-
-
-
             </div>
-
-
-            <hr class="" />
-
+            <hr/>
             <div class="listRoomWrap position-relative">
               <div class="row no-gutters">
                 <div class="col-md-6 col-12 border-bottom" *ngFor="let item of roomListData; let i = index">
@@ -93,35 +86,36 @@
     <div class="col-md-8 col-sm-12 col-lg-8 col-12">
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
-          <div class="col-4" *ngFor="let item of boxData; let i = index">
-            <div class="box" #box (click)="onBoxClick( item, i, box)">
+          <div class="col-4" *ngFor="let item of boxData; let i = index"   [ngClass]="{'active': selectedItem == item}">
+            <div class="box" (click)="onBoxClick(item, i)" >
               <h3>{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
-              <div *ngIf="isCheckBoxClicked == true && isboxClicked==true;" >
-                <p *ngFor="let i of boxData">
-                  {{ i.DirectionNameList }}
-                </p>
+              <div *ngIf="item.DirectionNameList && item.DirectionNameList.length<1">
+                <p >No rooms <br/>selected</p>
               </div>
-
-              <div *ngIf="isCheckBoxClicked == false ">
-                <p>
-                  No rooms <br />
-                  selected
-                </p>
+              <div *ngIf="item.DirectionNameList && item.DirectionNameList.length > 0">
+                <div class="mb-0 " *ngFor="let directionName of item.DirectionNameList; let i=index;" >
+                <p class="pb-0 mb-0" *ngIf="i < 3"> {{directionName}}</p>
+                </div>
+                <div *ngIf="item.DirectionNameList.length > 3" class="text-center ">
+                +{{(item.DirectionNameList.length)-3}}more</div>
               </div>
-
             </div>
-          </div>
         </div>
       </div>
       <div class="calculateBtnWrap">
-        <button type="button" [class.color]="isCheckBoxClicked == true" class="vaastu-btn btn orgBtn rounded" (click)="getVastuScore()">
-          CHECK</button><button type="button" *ngIf="isCheckBoxClicked && isboxClicked"
+        <button type="button"
+        [class.color]="isCheckBoxClicked == true"
+        class="vaastu-btn btn orgBtn rounded"
+
+        (click)="getVastuScore()">
+          CALCULATE SCORE</button><button type="button" *ngIf="isCheckBoxClicked && isboxClicked"
           [class.color]="isCheckBoxClicked == true" (click)="reset()"
           class="mobRoomsWrap vaastu-btn btn orgBtn rounded ml-2">
-          Reset All
+         RESET ALL
         </button>
       </div>
     </div>
   </div>
 </div>
+
