@@ -7,8 +7,8 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/vastuCheck', pathMatch: 'full' },
+  { path: 'vastuCheck', component: HomeComponent },
   {
     path: 'vastuScore',
     loadChildren: () =>
@@ -16,6 +16,8 @@ const routes: Routes = [
         (m) => m.VastuScoreModule
       ),
   },
+  // { path: 'vastuScore', component: VastuScoreCheckComponent },
+
   { path: '**', component: PageNotFoundComponentComponent },
 ];
 

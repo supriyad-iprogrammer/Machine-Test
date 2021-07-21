@@ -137,3 +137,7 @@ right: 10.81%;
   cursor: pointer;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.029693);
 }
+.btn-fav.yellow {
+  background: #fffae6;
+  color: #ffcd02;
+}

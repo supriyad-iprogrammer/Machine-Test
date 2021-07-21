@@ -14,7 +14,17 @@ import { VastuRoutingModule } from '../vastu-score-check/vastu-score.routing';
     VastuScoreCheckComponent,
     BreadcrumbComponent,
   ],
-  imports: [RouterModule, FormsModule, ReactiveFormsModule,CommonModule,VastuRoutingModule],
-  exports: [VastuScoreToolComponent, VastuScoreCheckComponent,BreadcrumbComponent],
+  imports: [
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    VastuRoutingModule,
+  ],
+  exports: [
+    VastuScoreToolComponent,
+    VastuScoreCheckComponent,
+    BreadcrumbComponent,
+  ],
 })
 export class VastuScoreModule {}

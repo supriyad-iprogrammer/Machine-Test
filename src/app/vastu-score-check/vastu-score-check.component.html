@@ -1,14 +1,16 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-
+  <div *ngIf="calculateScore==false">
   <div class="row" >
     <div class="col-md-4 col-sm-12 col-lg-4 col-12 backgroundColor">
       <div class="roomsWrap pb-4">
         <div class="ui_bathroom-about position-relative">
           <p class="d-md-block d-none d-lg-block mb-4">
+
             By clicking on the boxes below, you can choose the rooms that are
             present in each direction of your home
           </p>
+
           <div class="roomsCheckListBox" *ngIf="isboxClicked">
             <h2>{{ ListDataName }}</h2>
             <div style="display: flex">
@@ -104,7 +106,7 @@
         </div>
       </div>
       <div class="calculateBtnWrap">
-        <button type="button"
+        <button type="submit"
         [class.color]="isCheckBoxClicked == true"
         class="vaastu-btn btn orgBtn rounded"
 
@@ -115,7 +117,13 @@
          RESET ALL
         </button>
       </div>
+
     </div>
   </div>
 </div>
+</div>
 
+<div *ngIf="calculateScore==true">
+<app-vastu-score-tool [data]="responseData" ></app-vastu-score-tool>
+</div>
+</div>

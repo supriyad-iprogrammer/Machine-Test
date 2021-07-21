@@ -1,8 +1,7 @@
-
 import { Dataservice } from './../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ServerUrl } from '../core/constant/serverurl.constant';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,11 +10,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
-  calculateScore:boolean=false;
+  calculateScore: boolean = false;
   display = 'none';
   isCheckBoxClicked: boolean = false;
   isboxClicked: boolean = false;
-public subscription!:Subscription;
+  public subscription!: Subscription;
 
   boxData = [
     { id: 1, value: 'North West', DirectionNameList: [] },
@@ -34,18 +33,16 @@ public subscription!:Subscription;
   color = ['#FDEEE6', '#FFFFFF'];
   selectedItem: any;
   responseData: any;
-  roomWiseVastuScore:any;
-  overallVastuScore: any;
-  vastuScoreStatus: any;
+
   dataList: any;
   constructor(
     private dataService: Dataservice,
     private router: Router,
-
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
-//for open modal page
+  //for open modal page
   openModal() {
     this.display = 'block';
   }
@@ -54,23 +51,25 @@ public subscription!:Subscription;
     this.display = 'none';
   }
   //function on box clicked
-  onBoxClick(item: any, i:number) {
+  onBoxClick(item: any, i: number) {
     console.log(item);
     this.isboxClicked = true;
     this.ListDataName = item.value;
     this.selectedItem = item;
     if (this.isboxClicked == true) {
       //api call for get data
-    this.subscription=  this.dataService
+      this.subscription = this.dataService
         .get(ServerUrl.API_GET_ROOMLIST)
-        .subscribe((response: any) => {
-          this.roomListData = response.payload.data['roomList'];
-          console.log(this.roomListData);
-        },(err)=>{
-          console.log(err)
-        });
+        .subscribe(
+          (response: any) => {
+            this.roomListData = response.payload.data['roomList'];
+            console.log(this.roomListData);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
     }
-
   }
   //fuction after checked a value
   addCheckBoxValue($event: any, data: any) {
@@ -84,7 +83,6 @@ public subscription!:Subscription;
         if (item.value == this.ListDataName) {
           item.DirectionNameList.push(data);
           console.log(this.boxData);
-
         }
       });
     } else {
@@ -95,7 +93,6 @@ public subscription!:Subscription;
             item.DirectionNameList.indexOf(data),
             1
           );
-
 
           console.log(this.boxData);
         }
@@ -118,71 +115,59 @@ public subscription!:Subscription;
     //api call
     this.dataService
       .post(ServerUrl.API_GET_ROOMDETAILS_DIRECTION, direction)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.favourableDirectionsList =
-          res.payload.data['favourableDirections'];
-        console.log(this.favourableDirectionsList);
-      },(err)=>{
-        console.log(err)
-      });
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          this.favourableDirectionsList =
+            res.payload.data['favourableDirections'];
+          console.log(this.favourableDirectionsList);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   //for get vastu score with post method call
   getVastuScore() {
-    this.calculateScore=true;
+    // debugger
+    // this.calculateScore=true;
     console.log('get vastu score');
 
-// map for transfor data for passing request
+    // map for transfor data for passing request
 
-//create object
-    const obj:any = {};
+    //create object
+    const obj: any = {};
 
     this.boxData.map((item: any) => {
-    let key:string = item.value
-    obj[key] = item.DirectionNameList;
-
-    })
-//create body
+      let key: string = item.value;
+      obj[key] = item.DirectionNameList;
+    });
+    //create body
     const dataModel = {
-    "selectedRoomsAndDirection": JSON.parse(JSON.stringify(obj))
-    }
+      selectedRoomsAndDirection: JSON.parse(JSON.stringify(obj)),
+    };
 
-console.log(dataModel)
-//api call
-    this.dataService
-      .post(ServerUrl.API_GET_VASTUSCORE, dataModel)
-      .subscribe((res:any) => {
-        console.log(res)
-        this.responseData=res;
-        console.log(this.responseData)
-//         this.roomWiseVastuScore = res.payload.data.roomWiseVastuScore;
-//         console.log(this.roomWiseVastuScore)
-//  this.overallVastuScore = res.payload.data.overallVastuScore;
-//  console.log(this.overallVastuScore);
-//  this.vastuScoreStatus = res.payload.data.vastuScoreStatus;
+    console.log(dataModel);
+    //api call
+    this.dataService.post(ServerUrl.API_GET_VASTUSCORE, dataModel).subscribe(
+      (res: any) => {
+        console.log(res);
 
-// console.log(this.vastuScoreStatus)
-
-// this.dataService.sendData(res);
-
-console.log(res)
-      },(err)=>{
-        console.log(err)
+        this.responseData = res;
+        console.log(this.responseData);
+        this.calculateScore = true;
+      },
+      (err) => {
+        console.log(err);
       }
-      );
-
-      this.router.navigate(['/vastuScoreTool']);
-
-      // this.dataService.sendData(this.roomWiseVastuScore);
+    );
   }
-   //reset all list
-   reset() {
-this.isboxClicked=false;
-this.isCheckBoxClicked=false
+  //reset all list
+  reset() {
+    this.isboxClicked = false;
+    this.isCheckBoxClicked = false;
 
-
-this.subscription.unsubscribe();
-
+    this.subscription.unsubscribe();
   }
 }
