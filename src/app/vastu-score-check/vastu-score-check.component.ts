@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
+  boxActive:any;
   calculateScore: boolean = false;
   display = 'none';
   isCheckBoxClicked: boolean = false;
@@ -64,6 +65,7 @@ export class VastuScoreCheckComponent implements OnInit {
           (response: any) => {
             this.roomListData = response.payload.data['roomList'];
             console.log(this.roomListData);
+            this.boxActive=true;
           },
           (err) => {
             console.log(err);

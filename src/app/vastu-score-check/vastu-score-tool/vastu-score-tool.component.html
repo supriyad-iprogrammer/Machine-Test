@@ -1,121 +1,178 @@
-
 <div class="d-flex " style="justify-content: flex-end;
 margin-right: 80px;">
 
-  <a href="#" class="knowMore text-uppercase "
-    ><img class="knowMoreImg"
-    src="../../../assets/images/know-more-icon (1).png"
-      alt="Know_more"
-    />
-    Know More </a
-  >
+  <a href="#" class="knowMore text-uppercase "><img class="knowMoreImg"
+      src="../../../assets/images/know-more-icon (1).png" alt="Know_more" />
+    Know More </a>
 </div>
 
 <div class="container">
+  <div *ngIf="getLegendInfo==false">
+    <div class="vaastu_score col-12 col-md-10 mx-auto">
 
-  <div class="vaastu_score col-12 col-md-10 mx-auto">
+      <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
 
-    <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
-
-      <a
-        href="#"
-        class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block"
-        ><img
-          src="../../../assets/images/back_arrow-orange.png"
-          alt="back_icon"
-        />
-        <span  class="d-inline-block ml-2">GO BACK</span></a
-      >
-      <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE</h3>
-      <div class="improvment-req-number">
-        <div class="number"> {{overallVastuScore}} </div>
-        <div class="tx-improvement-required">{{vastuScoreStatus}}</div>
-      </div>
-      <div class="room-wise-breakup-score">
-        <h3 class="hd-overall-vaastu-score">ROOM-WISE BREAKUP OF SCORE</h3>
-        <p>Tap on the room to know details of the Vaastu compliance score</p>
-      </div>
-      <div class="selectedRoomBox position-relative">
-        <div class="row no-gutters">
-          <div class="col-md-6 col-12 border-bottom" *ngFor="let item of roomWiseVastuScore">
-            <div class="d-flex justify-content-between py-3">
-              <div class="left">
-                {{item.room}}
-                <div class="inner-left">({{item.direction}})</div>
-              </div>
-              <div class="right mr-lg-3 mr-md-3 mr-0">
-                <button class="btn-fav btn" (click)="getRoomDetails(item)"[ngClass]="{'yellow': item.legend=='Neutral'}">{{item.legend}}</button>
+        <a href="#" class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block"><img
+            src="../../../assets/images/back_arrow-orange.png" alt="back_icon" />
+          <span class="d-inline-block ml-2">GO BACK</span></a>
+        <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE</h3>
+        <div class="improvment-req-number">
+          <div class="number"> {{overallVastuScore}} </div>
+          <div class="tx-improvement-required">{{vastuScoreStatus}}</div>
+        </div>
+        <div class="room-wise-breakup-score">
+          <h3 class="hd-overall-vaastu-score">ROOM-WISE BREAKUP OF SCORE</h3>
+          <p>Tap on the room to know details of the Vaastu compliance score</p>
+        </div>
+        <div class="selectedRoomBox position-relative">
+          <div class="row no-gutters">
+            <div class="col-md-6 col-12 border-bottom" *ngFor="let item of roomWiseVastuScore">
+              <div class="d-flex justify-content-between py-3">
+                <div class="left">
+                  {{item.room}}
+                  <div class="inner-left">({{item.direction}})</div>
+                </div>
+                <div class="right mr-lg-3 mr-md-3 mr-0">
+                  <button class="btn-fav btn" (click)="getRoomDetails(item)"
+                    [ngClass]="{'yellow': item.legend=='Neutral'}">{{item.legend}}</button>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
-
+      </div>
+      <button class="btn-reset-vaastu-score">Check score for second plan</button>
+      <div class="vaastu-compliant-plans-wrap">
+        <div class="cnt">
+          <h2>Ready-made Vaastu plans</h2>
+          <p>
+            We have over 400 ready-made Vaastu-compliant floorplans. Take a look
+            at our plans gallery right now.
+          </p>
+        </div>
+        <div class="img">
+          <img src="../../../assets/images/map.svg" />
+        </div>
       </div>
     </div>
-    <button class="btn-reset-vaastu-score">Check score for second plan</button>
-    <div class="vaastu-compliant-plans-wrap">
-      <div class="cnt">
-        <h2>Ready-made Vaastu plans</h2>
+  </div>
+  <div *ngIf="getLegendInfo==true">
+
+    <div class="vaastu_score col-12 col-md-10 mx-auto">
+
+      <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
+
+
+        <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px;"><a href="#" class="mr-3" title="Back"><img
+              src="../../../assets/images/back-arrow.png" alt="back_icon"></a>Washroom + Toilet</h3>
+        <div class="mb-4" >
+          <h5 class="mb-3">FAVOURABLE DIRECTIONS</h5><button
+            class="btn-fav btn d-inline-block mr-2 mb-2" *ngFor="let itemFav of favourableDirections" data-toggle="modal" data-target="#legend"  (click)="getDirectionDetails(itemFav)">{{itemFav}}</button>
+        </div>
+        <div class="mb-4">
+          <h5 class="mb-3">NEUTRAL DIRECTIONS</h5><button class="btn-fav yellow btn d-inline-block mr-2 mb-2" data-toggle="modal" data-target="#legend"  *ngFor="let itemNatural of neutralDirections" (click)="getDirectionDetails(itemNatural)" >{{itemNatural}}</button>
+        </div>
+        <div class="mb-4">
+          <h5 class="mb-3">AVOIDABLE DIRECTIONS</h5><button
+            class="btn-fav marun btn d-inline-block mr-2 mb-2"*ngFor="let itemUnFav of unfavourableDirections" data-toggle="modal" data-target="#legend"  (click)="getDirectionDetails(itemUnFav)" >{{itemUnFav}}</button>
+        </div><strong class="text-uppercase d-block mb-2 font-weight-normal">ABOUT</strong>
         <p>
-          We have over 400 ready-made Vaastu-compliant floorplans. Take a look
-          at our plans gallery right now.
-        </p>
-      </div>
-      <div class="img">
-        <img src="../../../assets/images/map.svg" />
+        <ul>
+          <li> <strong>Drained water pipe position:</strong> You should provide fitting of pipes for drained water in
+            the northeast. The bathroom floor slope should be towards north and east, so water drains to the northeast
+            side of the bathroom.</li>
+          <li><strong>Shower, taps, and mirror position:</strong> Shower and fixtures in the bathroom can be attached to
+            the northern wall.</li>
+          <li><strong>Geyser position:</strong> You can place the geyser in the southeast corner.</li>
+          <li><strong>Bathtub &amp; Washbasin position:</strong> You can place the bathtub in the western corner and
+            provide space for a washbasin in the northeastern corner.</li>
+          <li><strong>Overhead tank position:</strong> The Overhead tanks should be in the southwest part of the site.
+          </li>
+          <li><strong>Window/ ventilator position:</strong> There should be windows or ventilators in the east or the
+            north.</li>
+          <li><strong>Showerhead/ bath position: </strong>You can take a bath in the western position of bathroom</li>
+          <li><strong>Bathrooms without W.C./ commode: </strong>You can place bathrooms<strong> </strong>without
+            attached Toilet in the east or between east and north-east of your home.</li>
+          <li><strong>W.C./ Commode position and orientation:</strong> If there is an attached toilet in the bathroom
+            itself, W.C. should be on the West, South, or Northwest side and a few inches above the ground. W.C. should
+            always be on the north-south axis and never on the east-west axis.</li>
+          <li><strong>Color scheme:</strong> It is advisable to choose bright and soothing colors for bathroom walls.
+            Ideal Colours: White, Grey or Pink</li>
+          <li><strong>Mirror position: </strong>You can place the mirror on the eastern and northern walls of your
+            bathroom.</li>
+          <li><strong>Dirty linens position:</strong> It would help if you placed the dirty linens on the west side of
+            the bathroom as setting rays are very harmful to bacteria and kill them.</li>
+          <li><strong>Cabinet position:</strong> If there is a cabinet, it should always be on the southwest side of the
+            bathroom + Toilet.</li>
+          <li><strong>Toilet position:</strong> Keep Toilet locations at a safe distance from the kitchen and the dining
+            room.</li>
+          <li><strong>Door position:</strong> Place the door of the Toilet on the eastern side.</li>
+          <li><strong>Septic Tank position:</strong> Avoid building a septic tank on the Southern side.</li>
+          <li><strong>Washing machine position:</strong> The appropriate directions for keeping the washing machine are
+            southeast and northwest.</li>
+        </ul>
+
+
       </div>
     </div>
-  </div>
-  <div class="custom-modal-section undefined">
-    <div
-      class="modal fade legendModal"
-      id="legend"
-      tabindex="-1"
-      aria-labelledby=""
-      aria-hidden="true"
-      style="
-        display: none;
-        justify-content: center;
-        position: fixed;
-        text-align: left;
-      "
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="height: 100%">
-          <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
-            <h4 class="modal-title" id="">Legend</h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
+
+    <div class="modal fade legendModal show" id="legend" tabindex="-1" [ngStyle]="{'display':display}"
+    aria-labelledby="" aria-hidden="true"
+    style="display: block; justify-content: center; position: fixed; text-align: left;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="height: 100%;">
+        <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
+          <h4 class="modal-title" id="">{{ListDataName}} </h4><button type="button" class="close"
+            data-dismiss="modal" aria-label="Close"><span aria-hidden="true" (click)="onCloseHandled()">×</span></button>
+        </div>
+        <div class="modal-body" style="height: 100%;">
+          <h6>ABOUT</h6>
+          <p class="pdl-5">
+          <div>
+            <p>Overhead water tanks should be placed in this direction.</p>
+            <p>It is recommended to store annual stock of granary in the southwest corner.</p>
+            <p>Bedrooms must be avoided in this direction.</p>
+            <p>Kitchens must not be designed in this direction.</p>
+            <p>Puja rooms must also be avoided in this direction.</p>
           </div>
-          <div class="modal-body" style="height: 100%">
-            <p class="mb-5">
-              This will be two lines of info on what this legend conveys. This
-              will be two lines of info on what this legend conveys.
-            </p>
-            <a href="#" class="btn-fav mb-3">FAVOURABLE</a>
-            <p class="mb-3">
-              This will be two lines of info on what are favourable directions.
-            </p>
-            <a href="#" class="btn-fav yellow mb-3">NEUTRAL</a>
-            <p class="mb-3">
-              This will be two lines of info on what are neutral directions.
-            </p>
-            <a href="#" class="btn-fav marun mb-3">AVOIDABLE</a>
-            <p>
-              This will be two lines of info on what are unfavourable
-              directions.
-            </p>
-          </div>
+
+          <h6>FAVOURABLE ROOMS</h6>
+          <ul class="row roomTypeList" >
+
+            <li class="col-12 col-md-6 col-lg-6" *ngFor="let i of favourableDirectionsList"><span> {{i}}</span></li>
+
+          </ul>
+          <h6>NEUTRAL ROOMS</h6>
+          <ul class="row roomTypeList">
+            <li class="col-12 col-md-6 col-lg-6"><span> Children Bedroom</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Dining Room</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Parking</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Porch</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Verandah</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Living Room</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Drawing Room</span></li>
+          </ul>
+          <h6>AVOIDABLE ROOMS</h6>
+          <ul class="row roomTypeList">
+            <li class="col-12 col-md-6 col-lg-6"><span> Balcony</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Washroom + Toilet</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Guest Bedroom</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Kitchen</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Underground Tank</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Pooja Room</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Utility Room</span></li>
+            <li class="col-12 col-md-6 col-lg-6"><span> Open Space</span></li>
+          </ul>
         </div>
       </div>
-    </div>
+    </div> -->
+
   </div>
+
+  </div>
+
+
 
 </div>

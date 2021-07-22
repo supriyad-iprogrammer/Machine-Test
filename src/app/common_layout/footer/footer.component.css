@@ -1,15 +1,21 @@
+footer{
+  background: #F3F2F8;
+
+  width: 100%;
+  margin-top: auto;
+
+}
+
+
 footer .footer-component.container {
+  background: #F3F2F8;
   display: block;
+  width: 100%;
 }
-.excludeMobileFooter .footer-component {
-  display: block;
-}
-.excludeMobileFooter .footer-component {
-  display: block;
-}
+
 .footer-component {
   padding: 40px 15px;
-  background: #F3F2F8;
+
 
 }
 

@@ -22,7 +22,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content" style="height: 100%;">
                     <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
-                      <h4 class="modal-title" id="">South West </h4><button type="button" class="close"
+                      <h4 class="modal-title" id="">{{ListDataName}} </h4><button type="button" class="close"
                         data-dismiss="modal" aria-label="Close"><span aria-hidden="true" (click)="onCloseHandled()">×</span></button>
                     </div>
                     <div class="modal-body" style="height: 100%;">
@@ -37,9 +37,9 @@
                       </div>
 
                       <h6>FAVOURABLE ROOMS</h6>
-                      <ul class="row roomTypeList" *ngFor="let i of favourableDirectionsList">
+                      <ul class="row roomTypeList" >
 
-                        <li class="col-12 col-md-6 col-lg-6"><span> {{i}}</span></li>
+                        <li class="col-12 col-md-6 col-lg-6" *ngFor="let i of favourableDirectionsList"><span> {{i}}</span></li>
 
                       </ul>
                       <h6>NEUTRAL ROOMS</h6>
@@ -65,7 +65,8 @@
                       </ul>
                     </div>
                   </div>
-                </div>
+                </div> -->
+
               </div>
             </div>
             <hr/>
@@ -89,7 +90,7 @@
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
           <div class="col-4" *ngFor="let item of boxData; let i = index"   [ngClass]="{'active': selectedItem == item}">
-            <div class="box" (click)="onBoxClick(item, i)" >
+            <div class="box" (click)="onBoxClick(item, i)">
               <h3>{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
               <div *ngIf="item.DirectionNameList && item.DirectionNameList.length<1">

@@ -1,13 +1,13 @@
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
-background-color: white;
+  background-color: white;
 }
 ul.breadcrumb li {
   display: inline;
   font-size: 18px;
 }
-ul.breadcrumb li+li:before {
+ul.breadcrumb li + li:before {
   padding: 8px;
   color: black;
   content: "/\00a0";
@@ -20,32 +20,16 @@ ul.breadcrumb li a:hover {
   color: #01447e;
   text-decoration: underline;
 }
-p{
-  /* position: absolute; */
-/* width: 148px;
-height: 72px;
-left: 176px;
-top: 193px; */
-
-font-family: Noto Sans;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 18px;
-/* or 150% */
-
-
-
+p {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
 }
-.card{
-  /* position: absolute;
-width: 570px;
-height: 144px;
-left: 98px;
-top: 173px; */
-
-background: #FFFFFF;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-border-radius: 8px;
-margin-top: 15px !important;
+.card {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 15px !important;
 }
