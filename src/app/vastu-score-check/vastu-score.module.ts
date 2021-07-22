@@ -8,13 +8,11 @@ import { BreadcrumbComponent } from '../common_layout/breadcrumb/breadcrumb.comp
 import { CommonModule } from '@angular/common';
 import { VastuRoutingModule } from '../vastu-score-check/vastu-score.routing';
 
-
 @NgModule({
   declarations: [
     VastuScoreToolComponent,
     VastuScoreCheckComponent,
     BreadcrumbComponent,
-
   ],
   imports: [
     RouterModule,

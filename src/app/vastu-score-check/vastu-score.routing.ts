@@ -4,7 +4,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VastuScoreCheckComponent } from './vastu-score-check.component';
 
-const route: Routes = [{ path: '', component: VastuScoreCheckComponent }];
+const route: Routes = [
+  {
+    path: '',
+    component: VastuScoreCheckComponent,data: {breadcrumb: 'Vastu Score'}
+  },
+];
 @NgModule({
   imports: [RouterModule.forChild(route)],
   exports: [RouterModule],

@@ -1,7 +1,7 @@
 <div class="d-flex " style="justify-content: flex-end;
 margin-right: 80px;">
 
-  <a href="#" class="knowMore text-uppercase "><img class="knowMoreImg"
+  <a  class="knowMore text-uppercase "><img class="knowMoreImg"
       src="../../../assets/images/know-more-icon (1).png" alt="Know_more" />
     Know More </a>
 </div>
@@ -12,7 +12,7 @@ margin-right: 80px;">
 
       <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
 
-        <a href="#" class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block"><img
+        <a  class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block" (click)="backClicked()"><img
             src="../../../assets/images/back_arrow-orange.png" alt="back_icon" />
           <span class="d-inline-block ml-2">GO BACK</span></a>
         <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE</h3>
@@ -65,8 +65,8 @@ margin-right: 80px;">
       <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
 
 
-        <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px;"><a href="#" class="mr-3" title="Back"><img
-              src="../../../assets/images/back-arrow.png" alt="back_icon"></a>Washroom + Toilet</h3>
+        <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px;"><a  class="mr-3" title="Back"><img
+              src="../../../assets/images/back-arrow.png" (click)="backClicked()" alt="back_icon"></a>Washroom + Toilet</h3>
         <div class="mb-4" >
           <h5 class="mb-3">FAVOURABLE DIRECTIONS</h5><button
             class="btn-fav btn d-inline-block mr-2 mb-2" *ngFor="let itemFav of favourableDirections" data-toggle="modal" data-target="#legend"  (click)="getDirectionDetails(itemFav)">{{itemFav}}</button>

@@ -53,11 +53,14 @@ export class VastuScoreCheckComponent implements OnInit {
   }
   //function on box clicked
   onBoxClick(item: any, i: number) {
+    // debugger
     console.log(item);
-    this.isboxClicked = true;
+    this.isboxClicked=true;
+
+    if (this.isboxClicked == true) {
+
     this.ListDataName = item.value;
     this.selectedItem = item;
-    if (this.isboxClicked == true) {
       //api call for get data
       this.subscription = this.dataService
         .get(ServerUrl.API_GET_ROOMLIST)
@@ -71,6 +74,9 @@ export class VastuScoreCheckComponent implements OnInit {
             console.log(err);
           }
         );
+    }else
+    {
+      this.isboxClicked=false
     }
   }
   //fuction after checked a value
@@ -85,6 +91,7 @@ export class VastuScoreCheckComponent implements OnInit {
         if (item.value == this.ListDataName) {
           item.DirectionNameList.push(data);
           console.log(this.boxData);
+
         }
       });
     } else {

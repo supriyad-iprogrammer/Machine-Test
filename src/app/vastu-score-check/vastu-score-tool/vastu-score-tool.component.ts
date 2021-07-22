@@ -3,6 +3,7 @@ import { Dataservice } from './../../service/data.service';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-vastu-score-tool',
@@ -28,12 +29,18 @@ export class VastuScoreToolComponent implements OnInit {
   favourableDirectionsList: any;
   ListDataName: any;
   constructor(private router: Router,
-    private dataService:Dataservice) {}
+    private dataService:Dataservice,
+    private _location: Location) {}
 
   ngOnInit(): void {
 
 
-    this.getdata();
+    this.getdataFromInput();
+  }
+  backClicked() {
+    console.log("back clicked")
+    // this._location.back();
+    this.router.navigate(['vastuscore'])
   }
    //for open modal page
    openModal() {
@@ -44,7 +51,7 @@ export class VastuScoreToolComponent implements OnInit {
     this.display = 'none';
   }
   //method for store data in variable
-  getdata() {
+  getdataFromInput() {
 
     this.responseData = this.data;
     console.log(this.responseData);

@@ -3,12 +3,13 @@ footer{
 
   width: 100%;
   margin-top: auto;
-
+position: relative;
+bottom: 0;
 }
 
 
 footer .footer-component.container {
-  background: #F3F2F8;
+
   display: block;
   width: 100%;
 }

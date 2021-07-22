@@ -13,7 +13,10 @@ import { BreadcrumbComponent } from './common_layout/breadcrumb/breadcrumb.compo
 import { HeaderComponent } from './common_layout/header/header.component';
 import { FooterComponent } from './common_layout/footer/footer.component';
 import { VastuScoreModule } from './vastu-score-check/vastu-score.module';
+
+
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,12 +24,14 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     HomeComponent,
     FooterComponent,
     PageNotFoundComponentComponent,
+
   ],
-  imports: [
+  imports: [VastuScoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-     VastuScoreModule
+
+
   ],
   providers: [Dataservice],
   bootstrap: [AppComponent]

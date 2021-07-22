@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   }
   onVastuScore(){
     console.log("hiii")
-    this.router.navigate(['/vastuScore']);
+
+    this.router.navigate(['vastuScore']);
   }
 }

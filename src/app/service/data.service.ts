@@ -19,7 +19,7 @@ export class Dataservice {
 ) {
     this.header.set('Content-Type', 'application/json');
   }
-// get request code
+//  code for get request
   get(
     url: string,
     isLoader?: boolean,
