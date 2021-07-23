@@ -53,7 +53,7 @@ export class Dataservice {
         })
       );
   }
-  sendData(data:any[]){
-this.responseData.next(data)
-  }
+//   sendData(data:any[]){
+// this.responseData.next(data)
+//   }
 }

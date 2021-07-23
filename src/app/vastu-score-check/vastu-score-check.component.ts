@@ -33,6 +33,7 @@ export class VastuScoreCheckComponent implements OnInit {
   favourableDirectionsList: any;
   color = ['#FDEEE6', '#FFFFFF'];
   selectedItem: any;
+  selectedCheckbox:any;
   responseData: any;
 
   dataList: any;
@@ -55,12 +56,12 @@ export class VastuScoreCheckComponent implements OnInit {
   onBoxClick(item: any, i: number) {
     // debugger
     console.log(item);
-    this.isboxClicked=true;
 
-    if (this.isboxClicked == true) {
 
+    if (this.isboxClicked == false) {
+      this.isboxClicked=true;
     this.ListDataName = item.value;
-    this.selectedItem = item;
+
       //api call for get data
       this.subscription = this.dataService
         .get(ServerUrl.API_GET_ROOMLIST)
@@ -68,20 +69,24 @@ export class VastuScoreCheckComponent implements OnInit {
           (response: any) => {
             this.roomListData = response.payload.data['roomList'];
             console.log(this.roomListData);
-            this.boxActive=true;
+
+            this.selectedItem = item;
           },
           (err) => {
             console.log(err);
+
           }
         );
-    }else
-    {
-      this.isboxClicked=false
+    }else{
+       this.isboxClicked=false;
+      this.selectedItem = null;
+      this.selectedCheckbox = null;
     }
+
   }
   //fuction after checked a value
   addCheckBoxValue($event: any, data: any) {
-    this.isCheckBoxClicked = true;
+
 
     console.log($event.target.value);
     // for add element after check
@@ -91,7 +96,8 @@ export class VastuScoreCheckComponent implements OnInit {
         if (item.value == this.ListDataName) {
           item.DirectionNameList.push(data);
           console.log(this.boxData);
-
+          this.isCheckBoxClicked = true;
+          this.selectedCheckbox = item;
         }
       });
     } else {
@@ -103,6 +109,9 @@ export class VastuScoreCheckComponent implements OnInit {
             1
           );
 
+          this.isCheckBoxClicked = false;
+          this.selectedItem = null;
+          this.selectedCheckbox=null;
           console.log(this.boxData);
         }
       });
@@ -140,10 +149,9 @@ export class VastuScoreCheckComponent implements OnInit {
   //for get vastu score with post method call
   getVastuScore() {
     // debugger
-    // this.calculateScore=true;
+
     console.log('get vastu score');
 
-    // map for transfor data for passing request
 
     //create object
     const obj: any = {};
@@ -166,6 +174,7 @@ export class VastuScoreCheckComponent implements OnInit {
         this.responseData = res;
         console.log(this.responseData);
         this.calculateScore = true;
+
       },
       (err) => {
         console.log(err);
@@ -178,5 +187,11 @@ export class VastuScoreCheckComponent implements OnInit {
     this.isCheckBoxClicked = false;
 
     this.subscription.unsubscribe();
+    this.selectedCheckbox=null;
+    this.selectedItem=null;
+    this.roomListData=[];
+this.boxData.filter((item:any)=>{
+  item.DirectionNameList=[]
+})
   }
 }

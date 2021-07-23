@@ -6,7 +6,7 @@ import { VastuScoreCheckComponent } from './vastu-score-check/vastu-score-check.
 
 const routes: Routes = [
   { path: '', redirectTo: '/vastuCheck', pathMatch: 'full'  },
-  { path: 'vastuCheck', component: HomeComponent ,data: {breadcrumb: 'Vastu Check'},
+  { path: 'vastuCheck', component: HomeComponent },
 // children:[ {
 //   path: 'vastuScore',
 //   loadChildren: () =>
@@ -14,9 +14,9 @@ const routes: Routes = [
 //       (m) => m.VastuScoreModule
 //     ),
 // },]
-},
 
-{
+
+ {
     path: 'vastuScore',
     loadChildren: () =>
       import('./vastu-score-check/vastu-score.module').then(

@@ -66,7 +66,7 @@ margin-right: 80px;">
 
 
         <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px;"><a  class="mr-3" title="Back"><img
-              src="../../../assets/images/back-arrow.png" (click)="backClicked()" alt="back_icon"></a>Washroom + Toilet</h3>
+              src="../../../assets/images/back-arrow.png" (click)="backClicked()" alt="back_icon"></a>{{RoomeName}}</h3>
         <div class="mb-4" >
           <h5 class="mb-3">FAVOURABLE DIRECTIONS</h5><button
             class="btn-fav btn d-inline-block mr-2 mb-2" *ngFor="let itemFav of favourableDirections" data-toggle="modal" data-target="#legend"  (click)="getDirectionDetails(itemFav)">{{itemFav}}</button>

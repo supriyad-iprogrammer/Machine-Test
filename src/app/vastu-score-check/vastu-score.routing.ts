@@ -6,9 +6,8 @@ import { VastuScoreCheckComponent } from './vastu-score-check.component';
 
 const route: Routes = [
   {
-    path: '',
-    component: VastuScoreCheckComponent,data: {breadcrumb: 'Vastu Score'}
-  },
+    path: 'vastuScore',
+    component: VastuScoreCheckComponent,children:[{path:'vastuTool' ,component:VastuScoreToolComponent}]}
 ];
 @NgModule({
   imports: [RouterModule.forChild(route)],

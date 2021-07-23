@@ -89,9 +89,9 @@
     <div class="col-md-8 col-sm-12 col-lg-8 col-12">
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
-          <div class="col-4" *ngFor="let item of boxData; let i = index"  [ngClass]="{'active': selectedItem == item}" >
+          <div class="col-4" *ngFor="let item of boxData; let i = index" [ngClass]="{'background-color': selectedCheckbox == item }" >
             <div class="box" (click)="onBoxClick(item, i)"   >
-              <h3>{{ item.value }}</h3>
+              <h3 [ngClass]="{'text-color': selectedItem == item}">{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
               <div *ngIf="item.DirectionNameList && item.DirectionNameList.length<1">
                 <p >No rooms <br/>selected</p>

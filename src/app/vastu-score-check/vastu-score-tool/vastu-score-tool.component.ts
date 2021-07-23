@@ -2,7 +2,7 @@ import { ServerUrl } from './../../core/constant/serverurl.constant';
 import { Dataservice } from './../../service/data.service';
 
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
@@ -12,11 +12,13 @@ import {Location} from '@angular/common';
 })
 export class VastuScoreToolComponent implements OnInit {
   // @INPUT  is used for get data from parent component
-  getLegendInfo:boolean=false;
-  display = 'none';
+
   @Input()
   data!: any[];
   responseData: any;
+ private canGoBack!: boolean;
+  getLegendInfo:boolean=false;
+  display = 'none';
 
   roomWiseVastuScore: any;
   overallVastuScore: any;
@@ -28,20 +30,37 @@ export class VastuScoreToolComponent implements OnInit {
   aboutDescription: any;
   favourableDirectionsList: any;
   ListDataName: any;
-  constructor(private router: Router,
+  RoomeName: any;
+  constructor(
     private dataService:Dataservice,
-    private _location: Location) {}
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly location: Location,
+   ) {
+    this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
+   }
 
   ngOnInit(): void {
 
 
     this.getdataFromInput();
   }
-  backClicked() {
+  //method for back arrow
+  // backClicked() {
+  //   console.log("back clicked")
+  //   this._location.back();
+  //   // this.router.navigate(['/vastuScore'])
+  // }
+  backClicked(): void {
+    // debugger
     console.log("back clicked")
-    // this._location.back();
-    this.router.navigate(['vastuscore'])
-  }
+    {
+      this.location.back();
+      // There's no previous navigation.
+      // Here we decide where to go. For example, let's say the
+      // upper level is the index page, so we go up one level.
+      // this.router.navigate(['../vastuScore'], {relativeTo: this.route});
+    }}
    //for open modal page
    openModal() {
     this.display = 'block';
@@ -62,9 +81,14 @@ export class VastuScoreToolComponent implements OnInit {
     console.log('overall vastu score ' + this.overallVastuScore);
     this.vastuScoreStatus = this.responseData.payload.data.vastuScoreStatus;
     console.log(' vastu score status' + this.vastuScoreStatus);
-  }
-  getRoomDetails(item:any){
 
+
+
+  }
+
+  //method for get room details Api call
+  getRoomDetails(item:any){
+    this.RoomeName=item.room;
 let obj={
   "roomName":item.room
 }
@@ -89,6 +113,8 @@ console.log('Unfavourable Directions is' + this.unfavourableDirections);
     this.getLegendInfo=true;
 
 })}
+
+
 getDirectionDetails(item:any){
   console.log('get derection details');
   this.display = 'block';

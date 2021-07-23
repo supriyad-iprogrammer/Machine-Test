@@ -136,9 +136,9 @@ input[type=checkbox]:after {
   background: #FF7021;
   border-radius: 8px;
  }
- .boxColor{
+ /* .boxActive{
 background: #FDEEE6;
- }
+ } */
 .modal.show{
   display: block;
 }
@@ -149,7 +149,7 @@ rgba(80, 55, 150, 1);
 
 }
 
-.active .box {
+.active {
   background: #FDEEE6;
   box-shadow: 0px 0px 4px rgba(255, 112, 33, 0.3);
 
@@ -174,4 +174,11 @@ text-transform: uppercase;
 }
 .boxSelect{
 background: violet;
+}
+.text-color{
+  color: #FF7021;
+}
+
+.background-color .box{
+  background: #FDEEE6;
 }

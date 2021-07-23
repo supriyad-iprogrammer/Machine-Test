@@ -25,6 +25,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     FooterComponent,
     PageNotFoundComponentComponent,
 
+
   ],
   imports: [VastuScoreModule,
     BrowserModule,
