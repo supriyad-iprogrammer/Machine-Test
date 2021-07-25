@@ -5,21 +5,26 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { ServerUrl } from '../core/constant/serverurl.constant';
 
 @Injectable()
 export class Dataservice {
+  responseData: Subject<any>;
+  responseData$: any;
 
-  private responseData =new Subject<any>();
-  responseData$=this.responseData.asObservable();
   header: HttpHeaders = new HttpHeaders();
-  constructor(private http: HttpClient,
-) {
+
+  constructor(private http: HttpClient) {
     this.header.set('Content-Type', 'application/json');
+
+    //data transfer using subject
+    this.responseData = new Subject<any>();
+    this.responseData$ = this.responseData.asObservable();
   }
-//  code for get request
+
+  //  code for get request
   get(
     url: string,
     isLoader?: boolean,
@@ -33,11 +38,11 @@ export class Dataservice {
       catchError(this.errorHandler)
     );
   }
-// Error Handle  code
+  // Error Handle  code
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error.message || 'server error.');
   }
-// post request code
+  // post request code
   post(
     url: string,
     data: any,
@@ -53,7 +58,8 @@ export class Dataservice {
         })
       );
   }
-//   sendData(data:any[]){
-// this.responseData.next(data)
-//   }
+  sendData(data: any[]) {
+    // debugger
+    this.responseData.next(data);
+  }
 }

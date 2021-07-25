@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-  <div *ngIf="calculateScore==false">
+  <div  *ngIf="calculateScore==false">
   <div class="row" >
     <div class="col-md-4 col-sm-12 col-lg-4 col-12 backgroundColor">
       <div class="roomsWrap pb-4">
@@ -32,8 +32,7 @@
                         <p>Overhead water tanks should be placed in this direction.</p>
                         <p>It is recommended to store annual stock of granary in the southwest corner.</p>
                         <p>Bedrooms must be avoided in this direction.</p>
-                        <p>Kitchens must not be designed in this direction.</p>
-                        <p>Puja rooms must also be avoided in this direction.</p>
+
                       </div>
 
                       <h6>FAVOURABLE ROOMS</h6>
@@ -47,21 +46,14 @@
                         <li class="col-12 col-md-6 col-lg-6"><span> Children Bedroom</span></li>
                         <li class="col-12 col-md-6 col-lg-6"><span> Dining Room</span></li>
                         <li class="col-12 col-md-6 col-lg-6"><span> Parking</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Porch</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Verandah</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Living Room</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Drawing Room</span></li>
+
                       </ul>
                       <h6>AVOIDABLE ROOMS</h6>
                       <ul class="row roomTypeList">
                         <li class="col-12 col-md-6 col-lg-6"><span> Balcony</span></li>
                         <li class="col-12 col-md-6 col-lg-6"><span> Washroom + Toilet</span></li>
                         <li class="col-12 col-md-6 col-lg-6"><span> Guest Bedroom</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Kitchen</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Underground Tank</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Pooja Room</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Utility Room</span></li>
-                        <li class="col-12 col-md-6 col-lg-6"><span> Open Space</span></li>
+
                       </ul>
                     </div>
                   </div>
@@ -89,7 +81,7 @@
     <div class="col-md-8 col-sm-12 col-lg-8 col-12">
       <div class="roomSelectorBoxes text-center py-4">
         <div class="row">
-          <div class="col-4" *ngFor="let item of boxData; let i = index" [ngClass]="{'background-color': selectedCheckbox == item }" >
+          <div class="col-4" *ngFor="let item of boxData; let i = index" [ngClass]="{'background-color': selectedCheckbox == item }">
             <div class="box" (click)="onBoxClick(item, i)"   >
               <h3 [ngClass]="{'text-color': selectedItem == item}">{{ item.value }}</h3>
               <ul class="list-unstyled mb-0"></ul>
@@ -125,6 +117,14 @@
 </div>
 
 <div *ngIf="calculateScore==true">
-<app-vastu-score-tool [data]="responseData" ></app-vastu-score-tool>
+  <div style="margin-left: 280px;" >
+    <a  class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block" (click)="backClicked()"><img
+      src="../../assets/images/back_arrow-orange.png" alt="back_icon" />
+    <span class="d-inline-block ml-2 goback">GO BACK</span></a>
+  </div>
+
+<app-vastu-score-tool [data]="responseData" ><span></span></app-vastu-score-tool>
+
+
 </div>
 </div>

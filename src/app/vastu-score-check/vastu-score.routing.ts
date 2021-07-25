@@ -6,11 +6,11 @@ import { VastuScoreCheckComponent } from './vastu-score-check.component';
 
 const route: Routes = [
   {
-    path: 'vastuScore',
-    component: VastuScoreCheckComponent,children:[{path:'vastuTool' ,component:VastuScoreToolComponent}]}
+    path: '',
+    component: VastuScoreCheckComponent}
 ];
 @NgModule({
-  imports: [RouterModule.forChild(route)],
-  exports: [RouterModule],
+  // imports: [RouterModule.forChild(route)],
+  // exports: [RouterModule],
 })
 export class VastuRoutingModule {}

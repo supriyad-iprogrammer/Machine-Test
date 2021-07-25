@@ -12,10 +12,8 @@ margin-right: 80px;">
 
       <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
 
-        <a  class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block" (click)="backClicked()"><img
-            src="../../../assets/images/back_arrow-orange.png" alt="back_icon" />
-          <span class="d-inline-block ml-2">GO BACK</span></a>
-        <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE</h3>
+
+        <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE  </h3>
         <div class="improvment-req-number">
           <div class="number"> {{overallVastuScore}} </div>
           <div class="tx-improvement-required">{{vastuScoreStatus}}</div>
@@ -43,7 +41,7 @@ margin-right: 80px;">
 
         </div>
       </div>
-      <button class="btn-reset-vaastu-score">Check score for second plan</button>
+      <button class="btn-reset-vaastu-score" (click)="onCheckSecondPlan()" >Check score for second plan</button>
       <div class="vaastu-compliant-plans-wrap">
         <div class="cnt">
           <h2>Ready-made Vaastu plans</h2>
@@ -66,7 +64,7 @@ margin-right: 80px;">
 
 
         <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px;"><a  class="mr-3" title="Back"><img
-              src="../../../assets/images/back-arrow.png" (click)="backClicked()" alt="back_icon"></a>{{RoomeName}}</h3>
+              src="../../../assets/images/back-arrow.png" (click)="modalBackArrow()" alt="back_icon"></a>{{RoomeName}}</h3>
         <div class="mb-4" >
           <h5 class="mb-3">FAVOURABLE DIRECTIONS</h5><button
             class="btn-fav btn d-inline-block mr-2 mb-2" *ngFor="let itemFav of favourableDirections" data-toggle="modal" data-target="#legend"  (click)="getDirectionDetails(itemFav)">{{itemFav}}</button>
@@ -95,23 +93,7 @@ margin-right: 80px;">
           <li><strong>Showerhead/ bath position: </strong>You can take a bath in the western position of bathroom</li>
           <li><strong>Bathrooms without W.C./ commode: </strong>You can place bathrooms<strong> </strong>without
             attached Toilet in the east or between east and north-east of your home.</li>
-          <li><strong>W.C./ Commode position and orientation:</strong> If there is an attached toilet in the bathroom
-            itself, W.C. should be on the West, South, or Northwest side and a few inches above the ground. W.C. should
-            always be on the north-south axis and never on the east-west axis.</li>
-          <li><strong>Color scheme:</strong> It is advisable to choose bright and soothing colors for bathroom walls.
-            Ideal Colours: White, Grey or Pink</li>
-          <li><strong>Mirror position: </strong>You can place the mirror on the eastern and northern walls of your
-            bathroom.</li>
-          <li><strong>Dirty linens position:</strong> It would help if you placed the dirty linens on the west side of
-            the bathroom as setting rays are very harmful to bacteria and kill them.</li>
-          <li><strong>Cabinet position:</strong> If there is a cabinet, it should always be on the southwest side of the
-            bathroom + Toilet.</li>
-          <li><strong>Toilet position:</strong> Keep Toilet locations at a safe distance from the kitchen and the dining
-            room.</li>
-          <li><strong>Door position:</strong> Place the door of the Toilet on the eastern side.</li>
-          <li><strong>Septic Tank position:</strong> Avoid building a septic tank on the Southern side.</li>
-          <li><strong>Washing machine position:</strong> The appropriate directions for keeping the washing machine are
-            southeast and northwest.</li>
+
         </ul>
 
 
@@ -149,10 +131,7 @@ margin-right: 80px;">
             <li class="col-12 col-md-6 col-lg-6"><span> Children Bedroom</span></li>
             <li class="col-12 col-md-6 col-lg-6"><span> Dining Room</span></li>
             <li class="col-12 col-md-6 col-lg-6"><span> Parking</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Porch</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Verandah</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Living Room</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Drawing Room</span></li>
+
           </ul>
           <h6>AVOIDABLE ROOMS</h6>
           <ul class="row roomTypeList">
@@ -160,14 +139,11 @@ margin-right: 80px;">
             <li class="col-12 col-md-6 col-lg-6"><span> Washroom + Toilet</span></li>
             <li class="col-12 col-md-6 col-lg-6"><span> Guest Bedroom</span></li>
             <li class="col-12 col-md-6 col-lg-6"><span> Kitchen</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Underground Tank</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Pooja Room</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Utility Room</span></li>
-            <li class="col-12 col-md-6 col-lg-6"><span> Open Space</span></li>
+
           </ul>
         </div>
       </div>
-    </div> -->
+    </div>
 
   </div>
 

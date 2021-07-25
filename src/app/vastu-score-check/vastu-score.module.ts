@@ -9,22 +9,22 @@ import { CommonModule } from '@angular/common';
 import { VastuRoutingModule } from '../vastu-score-check/vastu-score.routing';
 
 @NgModule({
-  declarations: [
-    VastuScoreToolComponent,
-    VastuScoreCheckComponent,
-    BreadcrumbComponent,
-  ],
-  imports: [
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    VastuRoutingModule,
-  ],
-  exports: [
-    VastuScoreToolComponent,
-    VastuScoreCheckComponent,
-    BreadcrumbComponent,
-  ],
+  // declarations: [
+  //   VastuScoreToolComponent,
+  //   VastuScoreCheckComponent,
+  //   BreadcrumbComponent,
+  // ],
+  // imports: [
+  //   RouterModule,
+  //   FormsModule,
+  //   ReactiveFormsModule,
+  //   CommonModule,
+  //   VastuRoutingModule,
+  // ],
+  // exports: [
+  //   VastuScoreToolComponent,
+  //   VastuScoreCheckComponent,
+  //   BreadcrumbComponent,
+  // ],
 })
 export class VastuScoreModule {}

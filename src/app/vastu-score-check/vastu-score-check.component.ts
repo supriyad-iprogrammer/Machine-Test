@@ -10,13 +10,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
-  boxActive:any;
-  calculateScore: boolean = false;
+  goback:boolean=true;
+  boxActive: any;
+
   display = 'none';
   isCheckBoxClicked: boolean = false;
   isboxClicked: boolean = false;
   public subscription!: Subscription;
-
+  calculateScore:boolean=false;
   boxData = [
     { id: 1, value: 'North West', DirectionNameList: [] },
     { id: 2, value: 'North', DirectionNameList: [] },
@@ -33,14 +34,15 @@ export class VastuScoreCheckComponent implements OnInit {
   favourableDirectionsList: any;
   color = ['#FDEEE6', '#FFFFFF'];
   selectedItem: any;
-  selectedCheckbox:any;
+  selectedCheckbox: any;
   responseData: any;
 
   dataList: any;
   constructor(
     private dataService: Dataservice,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {}
 
   ngOnInit(): void {}
@@ -56,12 +58,10 @@ export class VastuScoreCheckComponent implements OnInit {
   onBoxClick(item: any, i: number) {
     // debugger
     console.log(item);
-
-
-    if (this.isboxClicked == false) {
-      this.isboxClicked=true;
-    this.ListDataName = item.value;
-
+    this.selectedItem = item;
+    if (this.selectedItem ==item) {
+      this.isboxClicked = true;
+      this.ListDataName = item.value;
       //api call for get data
       this.subscription = this.dataService
         .get(ServerUrl.API_GET_ROOMLIST)
@@ -70,24 +70,20 @@ export class VastuScoreCheckComponent implements OnInit {
             this.roomListData = response.payload.data['roomList'];
             console.log(this.roomListData);
 
-            this.selectedItem = item;
-          },
+
+      },
           (err) => {
             console.log(err);
-
           }
         );
-    }else{
-       this.isboxClicked=false;
+    } else if(this.selectedItem ==item){
+      this.isboxClicked = false;
       this.selectedItem = null;
       this.selectedCheckbox = null;
     }
-
   }
   //fuction after checked a value
   addCheckBoxValue($event: any, data: any) {
-
-
     console.log($event.target.value);
     // for add element after check
     if ($event.target.checked) {
@@ -95,7 +91,7 @@ export class VastuScoreCheckComponent implements OnInit {
         // debugger
         if (item.value == this.ListDataName) {
           item.DirectionNameList.push(data);
-          console.log(this.boxData);
+       console.log(this.boxData);
           this.isCheckBoxClicked = true;
           this.selectedCheckbox = item;
         }
@@ -103,27 +99,24 @@ export class VastuScoreCheckComponent implements OnInit {
     } else {
       //for remove unchecked element
       this.boxData.filter((item: any) => {
-        if (item.value == this.ListDataName) {
+        if (item.value == this.ListDataName){
           item.DirectionNameList.splice(
             item.DirectionNameList.indexOf(data),
             1
           );
-
-          this.isCheckBoxClicked = false;
-          this.selectedItem = null;
-          this.selectedCheckbox=null;
+          // this.isCheckBoxClicked = false;
+          // this.selectedItem = null;
+          // this.selectedCheckbox = null;
           console.log(this.boxData);
         }
       });
     }
   }
-
   // for get direction details from posth method
   getDirectionDetails(event: any, item: any) {
     console.log('get derection details');
     this.display = 'block';
     // debugger
-
     console.log(event.target.value);
     console.log(item);
     //create object for passing request
@@ -145,17 +138,12 @@ export class VastuScoreCheckComponent implements OnInit {
         }
       );
   }
-
   //for get vastu score with post method call
   getVastuScore() {
     // debugger
-
     console.log('get vastu score');
-
-
     //create object
     const obj: any = {};
-
     this.boxData.map((item: any) => {
       let key: string = item.value;
       obj[key] = item.DirectionNameList;
@@ -164,34 +152,53 @@ export class VastuScoreCheckComponent implements OnInit {
     const dataModel = {
       selectedRoomsAndDirection: JSON.parse(JSON.stringify(obj)),
     };
-
     console.log(dataModel);
     //api call
     this.dataService.post(ServerUrl.API_GET_VASTUSCORE, dataModel).subscribe(
       (res: any) => {
         console.log(res);
-
         this.responseData = res;
         console.log(this.responseData);
-        this.calculateScore = true;
 
+
+       this.calculateScore = true;
+//use for pass data using service
+      //  this.dataService.sendData(this.responseData)
+
+//use for pass data using router parameter
+
+        // this.router.navigate(['/vastuTool'],{
+        //   queryParams:{data:JSON.stringify(this.responseData) }
+        // });
       },
       (err) => {
         console.log(err);
       }
     );
   }
+  backClicked(): void {
+    // debugger
+    console.log('back clicked');
+this.calculateScore=false;
+// this.onBoxClick(item: any, i: number) {};
+    // this.location.back();
+    console.log(this.boxData);
+    console.log(this.roomListData)
+
+    }
   //reset all list
   reset() {
     this.isboxClicked = false;
     this.isCheckBoxClicked = false;
-
-    this.subscription.unsubscribe();
-    this.selectedCheckbox=null;
-    this.selectedItem=null;
-    this.roomListData=[];
-this.boxData.filter((item:any)=>{
-  item.DirectionNameList=[]
-})
+    this.selectedCheckbox = null;
+    this.selectedItem = null;
+    // this.roomListData = [];
+    this.boxData.filter((item: any) => {
+      item.DirectionNameList = [];
+    });
   }
 }
+function i(item: any, any: any, i: any, number: any) {
+  throw new Error('Function not implemented.');
+}
+
