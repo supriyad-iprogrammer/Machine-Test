@@ -15,15 +15,13 @@
             <h2>{{ ListDataName }}</h2>
             <div style="display: flex">
               <p class="mb-0 paragraph">Want to know more about North-West?</p>
-              <a (click)="getDirectionDetails($event, ListDataName)" class="ancherTag"  style="display: flex;" data-target="#FavList"  title="READ NOW">READ NOW</a>
+              <a (click)="getDirectionDetails($event, ListDataName)" class="ancherTag"  data-target="#FavList"  title="READ NOW">READ NOW</a>
 
 
 
 
 
-
-
-              <div class="modal fade legendModal show" id="FavList"  [ngStyle]="{'display':display}"
+              <div class="modal fade legendModal show" id="FavList" *ngIf="favList==true" [ngStyle]="{'display':display, favList:true}"
                 aria-labelledby="" aria-hidden="true"
                 style="display: block ; justify-content: center; position: fixed; text-align: left;">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -135,7 +133,7 @@
 
 
 </div> -->
-<div class="modal fade show" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" aria-hidden="true">
+<div class="modal fade show" tabindex="-1" role="dialog" *ngIf="favList==false"  [ngStyle]="{'display':display}" aria-hidden="true">
   <div class="modal-dialog modal-full" style="position: fixed;
   margin-top: 0;">
     <div class="modal-content">

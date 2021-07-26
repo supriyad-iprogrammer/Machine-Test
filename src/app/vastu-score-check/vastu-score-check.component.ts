@@ -12,11 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./vastu-score-check.component.css'],
 })
 export class VastuScoreCheckComponent implements OnInit {
-  goback: boolean = true;
-  favList:boolean=false;
-  boxActive: any;
+
+  favList: boolean = false;
+
   getLegendInfo: boolean = false;
   display = 'none';
+
   isCheckBoxClicked: boolean = false;
   isboxClicked: boolean = false;
   public subscription!: Subscription;
@@ -42,9 +43,6 @@ export class VastuScoreCheckComponent implements OnInit {
 
   dataList: any;
 
-
-
-
   roomWiseVastuScore: any;
   overallVastuScore: any;
   vastuScoreStatus: any;
@@ -63,9 +61,7 @@ export class VastuScoreCheckComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   //for open modal page
   openModal() {
     this.display = 'block';
@@ -73,7 +69,6 @@ export class VastuScoreCheckComponent implements OnInit {
   //for close modal page
   onCloseHandled() {
     this.display = 'none';
-
   }
   //function on box clicked
   onBoxClick(item: any, i: number) {
@@ -123,9 +118,7 @@ export class VastuScoreCheckComponent implements OnInit {
             item.DirectionNameList.indexOf(data),
             1
           );
-          // this.isCheckBoxClicked = false;
-          // this.selectedItem = null;
-          // this.selectedCheckbox = null;
+
           console.log(this.boxData);
         }
       });
@@ -134,7 +127,8 @@ export class VastuScoreCheckComponent implements OnInit {
   // for get direction details from posth method
   getDirectionDetails(event: any, item: any) {
     console.log('get derection details');
-this.favList=true;
+    this.display = 'block';
+    this.favList = true;
     // debugger
     console.log(event.target.value);
     console.log(item);
@@ -158,14 +152,12 @@ this.favList=true;
       );
   }
 
-  closeFavList(){
-    this.favList=false;
-  }
   //for get vastu score with post method call
   getVastuScore() {
     // debugger
     console.log('get vastu score');
     this.display = 'block';
+    this.favList = false;
     //create object
     const obj: any = {};
     this.boxData.map((item: any) => {
@@ -183,15 +175,17 @@ this.favList=true;
         console.log(res);
         this.responseData = res;
         console.log(this.responseData);
-        this.roomWiseVastuScore = this.responseData.payload.data['roomWiseVastuScore'];
+        this.roomWiseVastuScore =
+          this.responseData.payload.data['roomWiseVastuScore'];
         console.log('room wise vastu score ' + this.roomWiseVastuScore);
-        this.overallVastuScore = this.responseData.payload.data.overallVastuScore;
+        this.overallVastuScore =
+          this.responseData.payload.data.overallVastuScore;
         console.log('overall vastu score ' + this.overallVastuScore);
         this.vastuScoreStatus = this.responseData.payload.data.vastuScoreStatus;
         console.log(' vastu score status' + this.vastuScoreStatus);
         // this.calculateScore = true;
 
-       // use for pass data using service
+        // use for pass data using service
         // this.router.navigate(['/vastuTool']);
         //   this.dataService.sendData(this.responseData)
 
@@ -213,21 +207,19 @@ this.favList=true;
     this.isCheckBoxClicked = false;
     this.selectedCheckbox = null;
     this.selectedItem = null;
-     this.roomListData = [];
+    this.roomListData = [];
     this.boxData.filter((item: any) => {
       item.DirectionNameList = [];
     });
   }
-
-
-
-
-
-
-  modalBackArrow(){
-    this.getLegendInfo=false;
+//back arrow from second modal
+  modalBackArrow() {
+    this.getLegendInfo = false;
     this.display = 'block';
   }
+
+  //api call for get room details
+
   getRoomDetails(item: any) {
     this.RoomeName = item.room;
     let obj = {
@@ -254,20 +246,14 @@ this.favList=true;
         this.getLegendInfo = true;
       });
   }
+
+  //button for check second plane
   onCheckSecondPlan() {
     // debugger
     console.log('check for second plane');
     this.display = 'none';
-  this.reset()
+    this.reset();
     //  this.router.navigate(['/vastuScore'],{relativeTo:this.route});
-
-   }
-   openDialog() {
-    const dialogRef = this.dialog.open(VastuScoreCheckComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
-}
 
+}
