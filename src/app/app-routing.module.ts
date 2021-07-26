@@ -21,13 +21,6 @@ const routes: Routes = [
     component: VastuScoreToolComponent,
   },
 
-  // children:[ {
-  //   path: 'vastuScore',
-  //   loadChildren: () =>
-  //     import('./vastu-score-check/vastu-score.module').then(
-  //       (m) => m.VastuScoreModule
-  //     ),
-  // },]
 
   //  {
   //     path: 'vastuScore',
