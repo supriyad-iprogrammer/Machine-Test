@@ -1,7 +1,7 @@
 import { ServerUrl } from './../../core/constant/serverurl.constant';
 import { Dataservice } from './../../service/data.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-vastu-score-tool',
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class VastuScoreToolComponent implements OnInit {
   @Input() data:any;
-
+  calculateScore:boolean=true;
   responseData: any;
   getLegendInfo: boolean = false;
   display = 'none';
@@ -26,6 +26,8 @@ export class VastuScoreToolComponent implements OnInit {
   ListDataName: any;
   RoomeName: any;
 
+  private previousUrl!: string;
+  private currentUrl!: string;
   constructor(
     private dataService: Dataservice,
     private route: ActivatedRoute,
@@ -33,17 +35,9 @@ export class VastuScoreToolComponent implements OnInit {
     private location: Location
   ) { }
   ngOnInit(): void {
-    // this.getdata();
+    this.getdata();
 
-      console.log('vastu tool page' + this.data);
-      this.responseData=this.data
-      console.log(this.responseData);
-      this.roomWiseVastuScore = this.responseData.payload.data['roomWiseVastuScore'];
-      console.log('room wise vastu score ' + this.roomWiseVastuScore);
-      this.overallVastuScore = this.responseData.payload.data.overallVastuScore;
-      console.log('overall vastu score ' + this.overallVastuScore);
-      this.vastuScoreStatus = this.responseData.payload.data.vastuScoreStatus;
-      console.log(' vastu score status' + this.vastuScoreStatus);
+
 
 
   }
@@ -55,6 +49,7 @@ export class VastuScoreToolComponent implements OnInit {
   //for open modal page
   openModal() {
     this.display = 'block';
+
   }
   //for close modal page
   onCloseHandled() {
@@ -63,6 +58,21 @@ export class VastuScoreToolComponent implements OnInit {
   //method for store data in variable
   getdata() {
     // debugger
+    //data pass using @INPUT
+
+    // console.log('vastu tool page' + this.data);
+    // this.responseData=this.data
+    // console.log(this.responseData);
+    // this.roomWiseVastuScore = this.responseData.payload.data['roomWiseVastuScore'];
+    // console.log('room wise vastu score ' + this.roomWiseVastuScore);
+    // this.overallVastuScore = this.responseData.payload.data.overallVastuScore;
+    // console.log('overall vastu score ' + this.overallVastuScore);
+    // this.vastuScoreStatus = this.responseData.payload.data.vastuScoreStatus;
+    // console.log(' vastu score status' + this.vastuScoreStatus);
+
+
+    //data pass using services
+
     // this.dataService.responseData$.subscribe((data: any) => {
     //   console.log('vastu tool page' + data);
     //   this.responseData = data;
@@ -74,6 +84,8 @@ export class VastuScoreToolComponent implements OnInit {
     //   this.vastuScoreStatus = this.responseData.payload.data.vastuScoreStatus;
     //   console.log(' vastu score status' + this.vastuScoreStatus);
     // });
+
+    //data pass using route parameter
 
     this.route.queryParams.subscribe((params)=>{
       this.responseData=JSON.parse((params.data));
@@ -139,9 +151,23 @@ export class VastuScoreToolComponent implements OnInit {
         }
       );
   }
+  //check  for second plane
+
    onCheckSecondPlan() {
     // debugger
     console.log('check for second plane');
+    // this.location.back();
      this.router.navigate(['/vastuScore']);
+
    }
+   refresh(): void {
+    window.location.reload();
+}
+   backClicked() {
+    // debugger
+    console.log('back clicked');
+    // this.location.back()
+    this.router.navigate(['/vastuScore'],{relativeTo:this.route})
+
+  }
 }

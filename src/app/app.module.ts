@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { VastuScoreCheckComponent } from './vastu-score-check/vastu-score-check.component';
 import { VastuScoreToolComponent } from './vastu-score-check/vastu-score-tool/vastu-score-tool.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +41,8 @@ import { VastuScoreToolComponent } from './vastu-score-check/vastu-score-tool/va
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    MatDialogModule
+
 
 
   ],

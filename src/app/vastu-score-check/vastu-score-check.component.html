@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-  <div  *ngIf="calculateScore==false">
+  <div >
   <div class="row" >
     <div class="col-md-4 col-sm-12 col-lg-4 col-12 backgroundColor">
       <div class="roomsWrap pb-4">
@@ -15,10 +15,17 @@
             <h2>{{ ListDataName }}</h2>
             <div style="display: flex">
               <p class="mb-0 paragraph">Want to know more about North-West?</p>
-              <a (click)="getDirectionDetails($event, ListDataName)" class="ancherTag" title="READ NOW">READ NOW</a>
-              <div class="modal fade legendModal show" id="legend" tabindex="-1" [ngStyle]="{'display':display}"
+              <a (click)="getDirectionDetails($event, ListDataName)" class="ancherTag"  style="display: flex;" data-target="#FavList"  title="READ NOW">READ NOW</a>
+
+
+
+
+
+
+
+              <div class="modal fade legendModal show" id="FavList"  [ngStyle]="{'display':display}"
                 aria-labelledby="" aria-hidden="true"
-                style="display: block; justify-content: center; position: fixed; text-align: left;">
+                style="display: block ; justify-content: center; position: fixed; text-align: left;">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content" style="height: 100%;">
                     <div class="modal-header border-bottom-0 pb-0 pl-3 pt-2">
@@ -57,7 +64,7 @@
                       </ul>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
               </div>
             </div>
@@ -100,6 +107,7 @@
       </div>
       <div class="calculateBtnWrap">
         <button type="submit"
+
         [class.color]="isCheckBoxClicked == true"
         class="vaastu-btn btn orgBtn rounded"
 
@@ -116,7 +124,7 @@
 </div>
 </div>
 
-<div *ngIf="calculateScore==true">
+<!-- <div *ngIf="calculateScore==true">
   <div style="margin-left: 280px;" >
     <a  class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block" (click)="backClicked()"><img
       src="../../assets/images/back_arrow-orange.png" alt="back_icon" />
@@ -126,5 +134,124 @@
 <app-vastu-score-tool [data]="responseData" ><span></span></app-vastu-score-tool>
 
 
+</div> -->
+<div class="modal fade show" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" aria-hidden="true">
+  <div class="modal-dialog modal-full" style="position: fixed;
+  margin-top: 0;">
+    <div class="modal-content">
+<app-header></app-header>
+<app-breadcrumb></app-breadcrumb>
+      <div class="container">
+        <div *ngIf="getLegendInfo==false">
+          <div class="vaastu_score col-12 col-md-10 mx-auto">
+
+            <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
+              <div  >
+                <a  class="backIcon mb-3 d-none d-lg-inline-block d-md-inline-block" (click)="onCloseHandled()"><img
+                  src="../../assets/images/back_arrow-orange.png" alt="back_icon" />
+                <span class="d-inline-block ml-2 goback">GO BACK</span></a>
+              </div>
+
+
+              <h3 class="hd-overall-vaastu-score">OVERALL VAASTU SCORE  </h3>
+              <div class="improvment-req-number">
+                <div class="number"> {{overallVastuScore}} </div>
+                <div class="tx-improvement-required">{{vastuScoreStatus}}</div>
+              </div>
+              <div class="room-wise-breakup-score">
+                <h3 class="hd-overall-vaastu-score">ROOM-WISE BREAKUP OF SCORE</h3>
+                <p>Tap on the room to know details of the Vaastu compliance score</p>
+              </div>
+              <div class="selectedRoomBox position-relative">
+                <div class="row no-gutters">
+                  <div class="col-md-6 col-12 border-bottom" *ngFor="let item of roomWiseVastuScore">
+                    <div class="d-flex justify-content-between py-3">
+                      <div class="left">
+                        {{item.room}}
+                        <div class="inner-left">({{item.direction}})</div>
+                      </div>
+                      <div class="right mr-lg-3 mr-md-3 mr-0">
+                        <button class="btn-fav btn" (click)="getRoomDetails(item)"
+                          [ngClass]="{'yellow': item.legend=='Neutral'}">{{item.legend}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <button class="btn-reset-vaastu-score" (click)="onCheckSecondPlan()" >Check score for second plan</button>
+            <div class="vaastu-compliant-plans-wrap">
+              <div class="cnt">
+                <h2>Ready-made Vaastu plans</h2>
+                <p>
+                  We have over 400 ready-made Vaastu-compliant floorplans. Take a look
+                  at our plans gallery right now.
+                </p>
+              </div>
+              <div class="img">
+                <img src="../../../assets/images/map.svg" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="getLegendInfo==true ">
+
+          <div class="vaastu_score col-12 col-md-10 mx-auto">
+
+            <div class="card px-lg-4 px-md-4 px-3 py-lg-4 py-md-4 py-3 shadow">
+
+
+              <h3 class="hd-overall-vaastu-score" style="margin-bottom: 10px; text-align: left;"><a  class="mr-3" title="Back"><img
+                    src="../../../assets/images/back-arrow.png"  (click)="modalBackArrow()" alt="back_icon"></a>{{RoomeName}}</h3>
+              <div class="mb-4" >
+                <h5 class="mb-3">FAVOURABLE DIRECTIONS</h5><button style="display: none;"
+                  class="btn-fav btn d-inline-block mr-2 mb-2" *ngFor="let itemFav of favourableDirections" data-toggle="modal" data-target="#legend1"  (click)="getDirectionDetails($event,itemFav)">{{itemFav}}</button>
+              </div>
+              <div class="mb-4">
+                <h5 class="mb-3">NEUTRAL DIRECTIONS</h5><button style="display: none;" class="btn-fav yellow btn d-inline-block mr-2 mb-2" data-toggle="modal" data-target="#legend1"  *ngFor="let itemNatural of neutralDirections" (click)="getDirectionDetails($event,itemNatural)" >{{itemNatural}}</button>
+              </div>
+              <div class="mb-4">
+                <h5 class="mb-3">AVOIDABLE DIRECTIONS</h5><button style="display: none;"
+                  class="btn-fav marun btn d-inline-block mr-2 mb-2"*ngFor="let itemUnFav of unfavourableDirections" data-toggle="modal" data-target="#legend1"  (click)="getDirectionDetails($event,itemUnFav)" >{{itemUnFav}}</button>
+              </div><strong class="text-uppercase d-block mb-2 font-weight-normal">ABOUT</strong>
+              <p>
+              <ul>
+                <li> <strong>Drained water pipe position:</strong> You should provide fitting of pipes for drained water in
+                  the northeast. The bathroom floor slope should be towards north and east, so water drains to the northeast
+                  side of the bathroom.</li>
+                <li><strong>Shower, taps, and mirror position:</strong> Shower and fixtures in the bathroom can be attached to
+                  the northern wall.</li>
+                <li><strong>Geyser position:</strong> You can place the geyser in the southeast corner.</li>
+                <li><strong>Bathtub &amp; Washbasin position:</strong> You can place the bathtub in the western corner and
+                  provide space for a washbasin in the northeastern corner.</li>
+                <li><strong>Overhead tank position:</strong> The Overhead tanks should be in the southwest part of the site.
+                </li>
+                <li><strong>Window/ ventilator position:</strong> There should be windows or ventilators in the east or the
+                  north.</li>
+                <li><strong>Showerhead/ bath position: </strong>You can take a bath in the western position of bathroom</li>
+                <li><strong>Bathrooms without W.C./ commode: </strong>You can place bathrooms<strong> </strong>without
+                  attached Toilet in the east or between east and north-east of your home.</li>
+
+              </ul>
+
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
 </div>
+
 </div>
+
+

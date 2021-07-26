@@ -1,6 +1,4 @@
-
 .ancherTag {
-
   margin-left: 95px;
 
   font-family: Noto Sans;
@@ -55,11 +53,11 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.43;
-    color: #666;
-    padding-left: 8px;
+  color: #666;
+  padding-left: 8px;
 }
 .border-bottom {
-  border-bottom: 1px solid #dee2e6!important;
+  border-bottom: 1px solid #dee2e6 !important;
   border-right: 1px solid #dee2e6;
 }
 .listRoomWrap .custom-control {
@@ -72,19 +70,14 @@
   min-height: 1.5rem;
   padding-left: 1.5rem;
 }
-.roomsCheckListBox, .aboutRoomWrap {
+.roomsCheckListBox,
+.aboutRoomWrap {
   background: #fff;
   border-radius: 10px;
   padding: 20px 20px 50px !important;
 }
 .position-relative {
-  position: relative!important;
-}
-input[type=checkbox]:after {
-  content: " ";
-  background-color: #ff9da5;
-  display: inline-block;
-  visibility: visible;
+  position: relative !important;
 }
 
 .roomSelectorBoxes {
@@ -104,7 +97,7 @@ input[type=checkbox]:after {
 /* .roomSelectorBoxes:active{
   background: yellow;
 } */
-.roomSelectorBoxes .box.data_filled :active{
+.roomSelectorBoxes .box.data_filled :active {
   background: #fdeee6;
 }
 .list-unstyled {
@@ -112,8 +105,7 @@ input[type=checkbox]:after {
   list-style: none;
 }
 .orgBtn {
-
-  background: #CCCCCC;
+  background: #cccccc;
   color: #ffffff;
   padding: 7px 30px;
   font-weight: 700;
@@ -133,24 +125,22 @@ input[type=checkbox]:after {
   padding: 0.8% 25%;
 }
 .color {
-  background: #FF7021;
+  background: #ff7021;
   border-radius: 8px;
- }
- /* .boxActive{
+}
+/* .boxActive{
 background: #FDEEE6;
  } */
-.modal.show{
+.modal.show {
   display: block;
 }
 
-h6{
-color:
-rgba(80, 55, 150, 1);
-
+h6 {
+  color: rgba(80, 55, 150, 1);
 }
 
 .active {
-  background: #FDEEE6;
+  background: #fdeee6;
   box-shadow: 0px 0px 4px rgba(255, 112, 33, 0.3);
 
   border-radius: 8px;
@@ -159,31 +149,207 @@ rgba(80, 55, 150, 1);
   padding: 20px;
   min-height: 180px;
   cursor: pointer;
-
 }
-.active h3{
+.active h3 {
   color: rgba(255, 112, 33, 1) !important;
 }
-.active h3{
-  color: rgba(153, 153, 153, 1) ;
+.active h3 {
+  color: rgba(153, 153, 153, 1);
 }
-h3{
+h3 {
   text-align: center;
-letter-spacing: 1.16px;
-text-transform: uppercase;
-}
-.boxSelect{
-background: violet;
-}
-.text-color{
-  color: #FF7021;
+  letter-spacing: 1.16px;
+  text-transform: uppercase;
 }
 
-.background-color .box{
-  background: #FDEEE6;
+.text-color {
+  color: #ff7021;
 }
-.goback{
+
+.background-color .box {
+  background: #fdeee6;
+}
+.goback {
   font-weight: 700;
-  color: #FF7021;
+  color: #ff7021;
+}
 
+.vaastu_score {
+  margin: 0px auto;
+  padding: 20px;
+  display: block;
+}
+.knowMore {
+  font-weight: 700;
+  color: #ff7021;
+}
+.knowMoreImg {
+  height: 17.47px;
+  left: 88.85%;
+  right: 10.81%;
+}
+.backIcon {
+  margin: 15px 15px 0 0;
+  font-weight: 700;
+  color: #ff7021;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.hd-overall-vaastu-score {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #666666;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: Noto Sans;
+
+  line-height: 24px;
+  letter-spacing: 2px;
+}
+.improvment-req-number {
+  margin: 0px 0px 30px 0px;
+  padding: 18px 0px 21px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #e2e2e2;
+  position: relative;
+}
+.improvment-req-number .number {
+  margin: 0px;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  color: #d11e4c;
+}
+.improvment-req-number .tx-improvement-required {
+  margin: 0px 0 5px 0;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #503796;
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+.room-wise-breakup-score {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+}
+.room-wise-breakup-score p {
+  margin: 0px;
+  padding: 14px 0 0px 0;
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  color: #666666;
+}
+.selectedRoomBox .border-bottom {
+  cursor: pointer;
+}
+.left {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+  color: #666666;
+}
+.inner-left {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 15px;
+}
+.btn-fav {
+  margin: 0px;
+  padding: 0px 24px;
+  font-weight: 400;
+  font-size: 11px;
+  color: #15b525;
+  text-decoration: none;
+  background: #f1fbf2;
+  height: 22px;
+  line-height: 21px;
+  display: block;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+.btn-reset-vaastu-score {
+  margin: 20px auto;
+  padding: 0px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  background: #ff7021;
+  min-width: 250px;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 0px;
+  letter-spacing: -0.15px;
+}
+.vaastu-compliant-plans-wrap {
+  margin: 0px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  color: #67677d;
+  border-radius: 10px;
+  background: url(../../assets/vastu_bot_banner_bg.png) no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  height: 134px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.029693);
+}
+.btn-fav.yellow {
+  background: #fffae6;
+  color: #ffcd02;
+}
+.header,
+.roomsWrap .custom-control,
+.partiularRoomWrpa .custom-control {
+  display: none;
+}
+.roomsCheckListBox,
+.aboutRoomWrap {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 20px 50px;
+}
+.btn-fav.marun {
+  background: #fae8ed;
+  color: #d11e4c;
+}
+.mb-2,
+.my-2 {
+  margin-bottom: 0.5rem !important;
+}
+.mr-2,
+.mx-2 {
+  margin-right: 0.5rem !important;
+}
+
+.modal-full {
+  min-width: 100% !important;
+  margin-left: 80 !important;
+}
+
+.modal-full .modal-content {
+  min-height: 100vh !important;
 }
